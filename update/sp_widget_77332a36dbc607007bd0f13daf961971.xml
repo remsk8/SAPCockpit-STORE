@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+	var ctx = document.getElementById("myChart2");
+	var myLineChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			//labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+			labels: c.data.myDate2,
+			datasets: [{
+					label: 'Current Active Users',
+					data: c.data.myValue2,
+					fill: false,
+					borderColor: '#c71f3b',
+					pointBackgroundColor: '#c71f3b',
+					borderWidth: 1
+				}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>connectedusers</id>
+        <internal>false</internal>
+        <link/>
+        <name>AngCharts ConnectedUsers</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+		data.system = $sp.getParameter('system');
+		data.myValue2=[];
+		data.myDate2=[];
+		var getData2=new GlideRecordSecure('x_agsa_sapcockpit_metric');
+		getData2.addEncodedQuery('name=USERS_ACTIVE_COUNT^target=*^sid='+data.system);
+		getData2.orderByDesc('sys_created_on');
+		getData2.setLimit(30);
+		getData2.query();
+		while (getData2.next()) {
+			data.myValue2.push(parseInt(getData2.data));
+			data.myDate2.push(getData2.sys_created_on.getDisplayValue().split(' ')[1].toString());
+		}
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-30 13:16:41</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>77332a36dbc607007bd0f13daf961971</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>AngCharts ConnectedUsers</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_widget_77332a36dbc607007bd0f13daf961971</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:44:21</sys_updated_on>
+        <template><![CDATA[<canvas id="myChart2" width="300" height="300"/>
+]]></template>
+    </sp_widget>
+</record_update>

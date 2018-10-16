@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function ($scope, $interval, spUtil) {
+	var c=this;
+	$interval (function(){
+		spUtil.update($scope);
+	}, c.options.widgetupdate);
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>hana-view</id>
+        <internal>false</internal>
+        <link/>
+        <name>Hana View</name>
+        <option_schema>[{"name":"widgetupdate","default_value":"60000","label":"Widget Update Time in Milliseconds","type":"integer"}]</option_schema>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <script><![CDATA[(function() {
+	data.list=[];
+	data.list2=[];
+	//data.hanadb=gs.getProperty("x_agsa_sapcockpit.HANA.DB").split(',');
+	refresh_threshold=options.alerttime;
+	system=$sp.getParameter('system');
+	//system='HA5';
+	data.system=system;
+	// Get node list, build first Table
+	node=getNode('HANA_NODE_AVAILABILITY');
+
+	// Now For each node, we need info
+	for (var i=0;i<node.length;i++) {
+		obj={};
+		// Check availability
+		obj.name=node[i];
+		obj.status=checkAvailability(node[i],'HANA_NODE_AVAILABILITY').status;
+		obj.statusValue=checkAvailability(node[i],'HANA_NODE_AVAILABILITY').statusValue;
+		// Get infos
+		obj.cpu= parseInt(getAgg(node[i],'DB_CPU_UTILIZATION'));
+		obj.mem= parseInt(getAgg(node[i],'DB_MEMORY_PERCENTAGEUSED_TOTAL_RESIDENT_MEMORY'));
+		obj.bck= parseInt(getAgg(node[i],'DISK_DATA_BACKUP_PERCENTAGE_USED'));
+		obj.data= parseInt(getAgg(node[i],'DISK_DATA_PERCENTAGE_USED'));
+		obj.log= parseInt(getAgg(node[i],'DISK_LOG_PERCENTAGE_USED'));
+		obj.conn=parseInt(getAgg(node[i],'CONNECTION_COUNT'));
+		obj.sid=system;
+		data.list.push(obj);
+	}
+		
+	// Get service-node list, build second table
+	node=getNode('SERVICE_STATUS');
+	for (i=0;i<node.length;i++) {
+		obj={};
+		// Check availability
+		obj.shost=node[i].split(' - ')[0];
+		obj.sservice=node[i].split(' - ')[1];
+		obj.sstatus=checkAvailability(node[i],'SERVICE_STATUS').status;
+		obj.statusValue=checkAvailability(node[i],'SERVICE_STATUS').statusValue;
+		// Get CPU infos
+		obj.scpu= getAgg(node[i],'DB_CPU_UTILIZATION_PER_SERVICE');
+		obj.smem= parseInt(getAgg(node[i],'MEMORY_PERCENTAGEUSED_PER_SERVICE'));
+		data.list2.push(obj);
+	}
+	
+	function countActive(state,metric,target) {
+		var nbact=0;
+		var nsc = new GlideAggregate("x_agsa_sapcockpit_last_metric");
+		nsc.addQuery('metric',metric);
+		nsc.addQuery('sid',system);
+		if (state === false) {
+			nsc.addQuery('value',state);
+		}
+		nsc.addQuery('target',target);
+		nsc.addAggregate('COUNT');
+		nsc.query();
+		if (nsc.next())	
+			nbact=nsc.getAggregate('COUNT');
+		return nbact;
+	}
+	
+	// Aggregate metric
+	function getAgg(target,metric) {
+		var avg=-1;
+		var count = new GlideAggregate('x_agsa_sapcockpit_last_metric');
+		count.addEncodedQuery('sid='+system+'^target='+target+'^metric='+metric);
+		count.addAggregate('AVG','value');
+		count.query();
+		while(count.next()){
+			avg = count.getAggregate('AVG','value');
+		}
+		return avg;
+	}
+	
+	// Return the list of metric targets
+	function getNode(metric) {
+		node=[];
+		var nd = new GlideAggregate("x_agsa_sapcockpit_last_metric");
+		nd.addQuery('metric',metric);
+		nd.addQuery('sid',system);
+		nd.addAggregate('COUNT', 'target');
+		nd.query();
+		while(nd.next()) {
+			node.push(nd.target.toString());
+		}
+		return node;	
+	}
+	
+	// Return Availbaility of the metric
+	function checkAvailability(target,metric) {
+		var obj={};
+		var total=countActive(total,metric,target);
+		var inact=countActive(false,metric,target);
+		if (total == inact ) {
+			obj.status='false';
+			obj.statusValue='DOWN';
+		} else {
+			obj.status='true';
+			obj.statusValue='OK';
+		}
+		return obj;	
+	}
+	
+	function getLastBck(target,metric) {
+		var delay='-1 minutes';
+		var lastUpd = new GlideRecordSecure("x_agsa_sapcockpit_last_metric");
+		lastUpd.addQuery('sid',system);
+		lastUpd.addQuery('metric',metric);
+		lastUpd.addQuery('target',target);
+		lastUpd.query();
+		if (lastUpd.next()) {
+			delay=lastUpd.value;
+		}
+		return delay;
+	}
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-04-03 12:45:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>01aae838db9553407bd0f13daf96198b</sys_id>
+        <sys_mod_count>203</sys_mod_count>
+        <sys_name>Hana View</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_widget_01aae838db9553407bd0f13daf96198b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:47:42</sys_updated_on>
+        <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
+<h1> {{data.system}} </h1>
+<table class='sstatus' sytle='width:30%;'>
+	<thead>
+		<tr  ng-init="sortType='name';sortReverse=false">
+      <th class="sstatus" ng-click="sortType = 'name'; sortReverse = !sortReverse"><a href="javascript:void(0)">Node Name</a></th>
+			<th class="sstatus" ng-click="sortType = 'status'; sortReverse = !sortReverse"><a href="javascript:void(0)">Status</a></th>
+ 			<th class="sstatus" ng-click="sortType = 'cpu'; sortReverse = !sortReverse"><a href="javascript:void(0)">CPU</a></th>
+ 			<th class="sstatus" ng-click="sortType = 'mem'; sortReverse = !sortReverse"><a href="javascript:void(0)">RMem Total Used</a></th>      
+ 			<th class="sstatus" ng-click="sortType = 'bck'; sortReverse = !sortReverse"><a href="javascript:void(0)">Dsk Bck</a></th>      
+ 			<th class="sstatus" ng-click="sortType = 'data'; sortReverse = !sortReverse"><a href="javascript:void(0)">Dsk Data</a></th>      
+ 			<th class="sstatus" ng-click="sortType = 'log'; sortReverse = !sortReverse"><a href="javascript:void(0)">Dsk Log</a></th>      
+      <!--<th class="sstatus" ng-click="sortType = 'conn'; sortReverse = !sortReverse"><a href="javascript:void(0)">Connection</a></th>      -->
+		</tr>
+	</thead>  
+      <tr ng-repeat="item in data.list | orderBy:sortType:sortReverse">
+          <td class="sstatus" ng-click="$parent.myFilter = {shost:item.name};" style='color:lightblue;' >{{item.name}}</td>
+          <td class="sstatus" ng-if='item.status == "true"' style='background-color:#3bc999;'><a style="color:white" href="sapcockpit?id={{item.typelink}}&system={{item.sid}}&company={{item.company}}">{{item.statusValue}}</a></td>
+          <td class="sstatus" ng-if='item.status == "false"' style='background-color:#c71f3b;'><a style='color:white;' href="sapcockpit?id={{item.typelink}}&system={{item.sid}}&company={{item.company}}">{{item.statusValue}}</a></td>
+          <td class="sstatus" ng-if='item.status != "false" && item.status != "true"' style='background-color:grey;'><a style='color:white;' href="sapcockpit?id={{item.typelink}}system={{item.sid}}&company={{item.company}}">{{item.statusValue}}</a></td>
+          <td class="sstatus">{{item.cpu}}</td>
+          <td class="sstatus">{{item.mem}} %</td>
+          <td class="sstatus">{{item.bck}} %</td>
+          <td class="sstatus">{{item.data}} %</td>
+          <td class="sstatus">{{item.log}} %</td>
+        <!--  <td class="sstatus">{{item.conn}}</td>-->
+       </tr>
+</table>
+<br>
+<table class='sstatus' sytle='width:30%;'>
+	<thead>
+		<tr ng-init="sortType='shost';sortReverse2=true;myFilter=data.list[0].name">
+      <th class="sstatus" ng-click="sortType = 'shost'; sortReverse2 = !sortReverse2"><a href="javascript:void(0)">Host</a></th>
+      <th class="sstatus" ng-click="sortType = 'sservice'; sortReverse2 = !sortReverse2"><a href="javascript:void(0)">Service</a></th>
+			<th class="sstatus" ng-click="sortType = 'sstatus'; sortReverse2 = !sortReverse2"><a href="javascript:void(0)">Status</a></th>
+ 			<th class="sstatus" ng-click="sortType = 'scpu'; sortReverse2 = !sortReverse2"><a href="javascript:void(0)">CPU</a></th>
+ 			<th class="sstatus" ng-click="sortType = 'smem'; sortReverse2 = !sortReverse2"><a href="javascript:void(0)">Memory</a></th>      
+		</tr>
+	</thead>  
+      <tr ng-repeat="item in data.list2 | orderBy:sortType:sortReverse2 | filter:myFilter">
+          <td class="sstatus" style='color:lightblue;' >{{item.shost}}</td>
+          <td class="sstatus" style='color:lightblue;' >{{item.sservice}}</td>
+          <td class="sstatus" ng-if='item.sstatus == "true"' style='background-color:#3bc999;'><a style="color:white" href="sapcockpit?id={{item.typelink}}&system={{item.sid}}&company={{item.company}}">{{item.statusValue}}</a></td>
+          <td class="sstatus" ng-if='item.sstatus == "false"' style='background-color:#c71f3b;'><a style='color:white;' href="sapcockpit?id={{item.typelink}}&system={{item.sid}}&company={{item.company}}">{{item.statusValue}}</a></td>
+          <td class="sstatus" ng-if='item.sstatus != "false" && item.sstatus != "true"' style='background-color:grey;'><a style='color:white;' href="sapcockpit?id={{item.typelink}}system={{item.sid}}&company={{item.company}}">{{item.statusValue}}</a></td>
+          <td class="sstatus">{{item.scpu}}</td>
+          <td class="sstatus">{{item.smem}} %</td>
+       </tr>
+</table>
+<br>
+<br>
+<br>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Last metric" max_length="40" name="x_agsa_sapcockpit_last_metric" type="collection">
+        <element label="Company" max_length="40" name="company" type="string"/>
+        <element label="ConnectorID" max_length="40" name="connectorid" type="string"/>
+        <element label="Data" max_length="40" name="data" type="string"/>
+        <element label="Description" max_length="100" name="description" type="string"/>
+        <element label="ExecutionTime" max_length="40" name="executiontime" type="glide_date_time"/>
+        <element label="MeasureTime" max_length="40" name="measuretime" type="string"/>
+        <element label="Metric" max_length="100" name="metric" type="string"/>
+        <element label="Module" max_length="100" name="module" type="string"/>
+        <element display="true" label="Name" max_length="100" name="name" type="string"/>
+        <element label="Sid" max_length="40" name="sid" type="string"/>
+        <element label="Target" max_length="100" name="target" type="string"/>
+        <element label="Type" max_length="40" name="type" type="string"/>
+        <element label="Unit" max_length="40" name="unit" type="string"/>
+        <element label="UnitShort" max_length="40" name="unitshort" type="string"/>
+        <element label="User" max_length="100" name="user" type="string"/>
+        <element label="Value" max_length="100" name="value" type="string"/>
+    </element>
+</database>

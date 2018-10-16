@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function ($scope, $interval, spUtil) {
+	var c=this;
+	$interval (function(){
+		spUtil.update($scope);
+	}, c.options.widgetupdate);
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>systemoverview</id>
+        <internal>false</internal>
+        <link/>
+        <name>System Overview</name>
+        <option_schema>[{"name":"widgetupdate","default_value":"60000","label":"Widget Update Time in Milliseconds","type":"integer"},{"name":"alerttime","default_value":"300000","label":"Alert when Cockpit is not updated for x milliseconds","type":"integer"}]</option_schema>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <script><![CDATA[(function() {
+	system=[];
+	data.list=[];
+	data.comp=gs.getProperty('x_agsa_sapcockpit.show.Company'); 
+	refresh_threshold=options.alerttime;
+
+	// Get system list and Type
+	var syst = new GlideAggregate("x_agsa_sapcockpit_last_metric");
+	syst.addAggregate('COUNT', 'sid');
+	syst.query();
+	while(syst.next()) {
+		objs={};
+		objs.sid=syst.sid.toString();
+		system.push(objs);
+	}
+
+	// Now For each system, we need company, operational status, action, worst alarm severity
+	for (var i=0;i<system.length;i++) {
+		var obj={};
+		//getting name status company 
+		var nsc = new GlideRecordSecure("x_agsa_sapcockpit_last_metric");
+		nsc.addQuery('metric','SYSTEM_AVAILABILITY');
+		nsc.addQuery('sid',system[i].sid);
+		nsc.query();
+		if (nsc.next()) {
+			obj.sid=system[i].sid;
+			obj.company=nsc.company.getDisplayValue();
+			if (nsc.type.indexOf('HANA') != -1 ) {
+							obj.type="Hana DB";
+							obj.typelink="hanaview";
+						}	else { 
+							obj.type="NetWeaver";
+							obj.typelink="detailview";
+						}
+		}
+		
+		//getting status from last Metric
+		var nscst = new GlideAggregate("x_agsa_sapcockpit_last_metric");
+		nscst.addQuery('metric','SYSTEM_AVAILABILITY');
+		nscst.addQuery('sid',system[i].sid);
+		nscst.addQuery('value','false');
+		nscst.addAggregate('COUNT');
+		nscst.query();
+		if (nscst.next()) {		
+			if (nscst.getAggregate('COUNT') == 0) {
+				obj.status='true';
+			} else {
+				obj.status='false';
+			}
+		}
+		
+		// getting severity
+		var getSev = new GlideRecordSecure("x_agsa_sapcockpit_alarm");
+		getSev.addQuery('sid',system[i].sid);
+		getSev.addQuery('acknowledge','false');
+		getSev.orderByDesc('severity_code');
+		getSev.query();
+		if (getSev.next()) {
+				obj.severity=parseInt(getSev.severity_code);
+		} else {
+			obj.severity=0;
+		}
+		
+		// Get Last Metric
+		var lastUpd2 = new GlideRecordSecure("x_agsa_sapcockpit_last_metric");
+		lastUpd2.addQuery('sid',system[i].sid);
+		lastUpd2.orderByDesc('sys_updated_on');
+		lastUpd2.query();
+		lastUpd2.next();
+		obj.lastMetr=lastUpd2.sys_updated_on.getDisplayValue();
+		// Check if refresh time is corret otherwise set RED
+		obj.value2=compareDate(lastUpd2.sys_updated_on,refresh_threshold);
+		// Add color depending on delay for Metrics
+		obj.number=getAlarmNumber(system[i].sid);
+		obj.numberToday=getAlarmNumber(system[i].sid,"days");
+		if (obj.type == 'NetWeaver') {
+			obj.lastreport=getLastReport(system[i].sid);
+		}
+		data.list.push(obj);
+	}
+	
+	function getAlarmNumber(sid,mtype) {
+		var obj={};		
+		var count = new GlideAggregate('x_agsa_sapcockpit_alarm');
+		count.addQuery('sid',sid);
+		count.addQuery('acknowledge',false);
+		if(mtype === 'days') {
+			var date=new GlideDate();
+			var gdt = new GlideDateTime();  
+			gdt.setDisplayValueInternal(date + " 00:00:00");  
+			sdate=gdt.getValue();
+			gdt.setDisplayValueInternal(date + " 23:59:59");  
+			edate=gdt.getValue();
+      count.addQuery('raise_time', '>', sdate);
+			count.addQuery('raise_time', '<', edate);
+			obj.url="/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge=false^sid="+sid+"^raise_timeONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()";
+		} else {
+	    obj.url="/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid="+sid;
+		}
+		count.addAggregate('COUNT');
+		count.query();
+		var nbval =0;
+		if(count.next())  {
+			obj.count=parseInt(count.getAggregate('COUNT'));
+			return obj;	
+		}			
+	}
+	
+	function compareDate(date,threshold) {
+		var value=false;
+		var gdt1=new GlideDateTime();
+		gdt1.setValue(date);
+		var gdt2=new GlideDateTime();
+		var dur = GlideDateTime.subtract(gdt1, gdt2);
+		if (dur.getNumericValue() < threshold) 
+			value=true;
+		return value;
+	}
+	
+	function getLastReport(sid) {
+		var obj={};
+		var count = new GlideRecordSecure('x_agsa_sapcockpit_report');
+		count.orderByDesc('sys_created_on');
+		count.addQuery('system_sid',sid);
+		count.query();
+		if(count.next()) {
+			var gr=new GlideRecord('sys_attachment');
+			gr.addQuery('table_sys_id',count.sys_id);
+			gr.query();
+			if (gr.next()) {
+				obj.url='/sys_attachment.do?sys_id='+gr.sys_id;
+				obj.date=gr.sys_created_on.getDisplayValue();
+			}
+		}
+		return obj;
+	}
+	
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-27 12:54:22</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c2518b794f0a430033e71aabb110c789</sys_id>
+        <sys_mod_count>396</sys_mod_count>
+        <sys_name>System Overview</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_widget_c2518b794f0a430033e71aabb110c789</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:49:11</sys_updated_on>
+        <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
+<table class='sstatus' sytle='width:30%;'>
+	<thead>
+		<tr ng-init='sortType=(data.comp == "false") ? "sid" : ["company","sid"];' >
+ 			<th class="sstatus" ng-click="$parent.sortType = 'company'; $parent.sortReverse = !sortReverse" style="color:#242f36;" ng-if='data.comp == "true"'>Company</th>
+			<th class="sstatus" ng-click="sortType = 'sid'; sortReverse = !sortReverse"><a href="javascript:void(0)">SID</a></th>
+ 			<th class="sstatus" ng-click="sortType = 'type'; sortReverse = !sortReverse"><a href="javascript:void(0)">Type</a></th>
+ 			<th class="sstatus" ng-click="sortType = 'lastreport.date'; sortReverse = !sortReverse"><a href="javascript:void(0)">Last Report</a></th>
+	  	<th class="sstatus" ng-click="sortType = 'numberToday.count'; sortReverse = !sortReverse"><a href="javascript:void(0)">Today's Alarms</a></th>
+      <th class="sstatus" ng-click="sortType = 'number.count'; sortReverse = !sortReverse"><a href="javascript:void(0)">Total Alarms</a></th>
+			<th class="sstatus" ng-click="sortType = 'severity'; sortReverse = !sortReverse"><a href="javascript:void(0)">Worst Alarm Severity<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col4' &amp;&amp; sortReverse"/></a></th>
+     	<th class="sstatus" ng-click="sortType = 'value2'; sortReverse = !sortReverse"><a href="javascript:void(0)">Refresh</a></th>
+		</tr>
+	</thead>  
+      <tr ng-repeat="item in data.list | orderBy:sortType:sortReverse">
+          <td class="sstatus" ng-if='data.comp == "true"' style='color:lightblue;' >{{item.company}}</td>
+          <td class="sstatus" ng-if='item.status == "true"' style='background-color:#3bc999;'><a style="color:white" href="sapcockpit?id={{item.typelink}}&system={{item.sid}}&company={{item.company}}">{{item.sid}}</a></td>
+          <td class="sstatus" ng-if='item.status == "false"' style='background-color:#c71f3b;'><a style='color:white;' href="sapcockpit?id={{item.typelink}}&system={{item.sid}}&company={{item.company}}">{{item.sid}}</a></td>
+          <td class="sstatus" ng-if='item.status != "false" && item.status != "true"' style='background-color:grey;'><a style='color:white;' href="sapcockpit?id={{item.typelink}}system={{item.sid}}&company={{item.company}}">{{item.sid}}</a></td>
+          <td class="sstatus">{{item.type}}</td>
+          <td class="sstatus" ng-if='item.lastreport.url === undefined' style='color:white;text-align:center;'>No reports available</td>
+          <td class="sstatus" ng-if='item.lastreport.url !== undefined' style='text-align:center;'><a style='color:white' href="{{item.lastreport.url}}" target="_blank">{{item.lastreport.date}}</a></td>    
+          <td class="sstatus" ><a style='color:white;' ng-href="{{item.numberToday.url}}" target="_blank">{{item.numberToday.count}}</a></td>
+          <td class="sstatus" ><a style='color:white;' ng-href="{{item.number.url}}" target="_blank">{{item.number.count}}</a></td>
+          <td class="sstatus" ng-if='item.severity == 5' style='background-color:#c71f3b;'><a style='color:white!important;' href="/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid={{item.sid}}" target="_blank">CRITICAL</a></td>
+          <td class="sstatus" ng-if='item.severity == 4' style='background-color:#ff8700;'><a ng-href="/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid={{item.sid}}" target="_blank">MAJOR</a></td>
+          <td class="sstatus" ng-if='item.severity == 3' style='background-color:#6b2cec;'><a style='color:white!important;' ng-href="/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid={{item.sid}}" target="_blank">MINOR</a></td>
+          <td class="sstatus" ng-if='item.severity == 2' style='background-color:#ecd82c;'><a ng-href="/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid={{item.sid}}" target="_blank">WARNING</a></td>
+          <td class="sstatus" ng-if='item.severity == 1' style='background-color:#3bb3c9;'><a ng-href="/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid={{item.sid}}" target="_blank">INFORMATIONAL</a></td>
+          <td class="sstatus" ng-if='item.severity == ""' style='background-color:#3bc999;'>NO ALARM</td>
+          <td class="sstatus" ng-if='item.value2 == true' style='color:lightgreen;text-align:center;'>OK</td>
+          <td class="sstatus" ng-if='item.value2 == false' style='background-color:#c71f3b;color:white;text-align:center;'>ERROR</td>
+    </tr>
+</table>]]></template>
+    </sp_widget>
+</record_update>

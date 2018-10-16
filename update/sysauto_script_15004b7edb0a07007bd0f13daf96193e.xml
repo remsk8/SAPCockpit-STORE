@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Alarm Monthly cleaner</name>
+        <run_as/>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2017-10-30 15:21:40</run_start>
+        <run_time>1970-01-01 08:00:01</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[function dleter() {
+	var del=new GlideRecordSecure('x_agsa_promonitor_alarms');
+	del.addQuery('severity','CLEAR');
+	del.addQuery('sys_created_on','<',gs.beginningOfLastMonth());
+	del.deleteMultiple();
+}
+
+dleter();]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-30 15:23:05</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>15004b7edb0a07007bd0f13daf96193e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Alarm Monthly cleaner</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sysauto_script_15004b7edb0a07007bd0f13daf96193e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-09-18 12:26:57</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

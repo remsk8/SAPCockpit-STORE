@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_agsa_sapcockpit_contact.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<style>
+	div.indent {
+		margin-left: 30px;
+	}
+	div.address {
+		display:grid;
+	}
+</style>
+<div  class="indent">
+<h2>
+	<img src="SAPCockpit.png" width="300" height="52"/><i> powered by</i> 	<img src="AgentilSoftware.png" width="200" height="52"/>
+</h2>
+<br/>
+<div class="address">
+<b>AGENTIL Software</b> <br/>
+Rue du Pré-de-la-Fontaine, 19 <br/>
+CH 1242 Satigny <br/>
+<b>SWITZERLAND</b> <br/>
++41 22 595 04 04 <br/>
+</div>
+<br/>
+<br/>
+<h4>Limited support can be obtained by sending an email to Agentil Software:<br/>
+	<a rel="noopener noreferrer nofollow" href="mailto:contact@agentil-software.com">contact@agentil-software.com</a><br/>
+	<br/>
+	For accessing our official documentation, please visit:<br/>
+	<a rel="noopener noreferrer nofollow" href="https://wiki.agentil-software.com/doku.php?id=products:sapcockpit:welcome" target="_blank">Official Wiki</a><br/>
+	<br/>
+	Website:<br/>
+	<a rel="noopener noreferrer nofollow" href="https://agentil-software.com/" target="_blank">Agentil Software</a><br/>
+</h4>
+</div>
+</j:jelly>]]></html>
+        <name>contact</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-09-18 08:29:29</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>47daf43edb6ca300446b105f689619f6</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>contact</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_ui_page_47daf43edb6ca300446b105f689619f6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-09-18 12:23:39</sys_updated_on>
+    </sys_ui_page>
+</record_update>

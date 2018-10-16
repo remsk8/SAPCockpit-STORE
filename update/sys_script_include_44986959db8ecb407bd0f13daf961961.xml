@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_agsa_sapcockpit.ProMonitorLib</api_name>
+        <client_callable>false</client_callable>
+        <description>ProMonitorLib</description>
+        <name>ProMonitorLib</name>
+        <script><![CDATA[var ProMonitorLib = Class.create();
+ProMonitorLib.prototype = {
+    initialize: function() {
+    },
+	
+	// Check if item with key/value exist in table
+	checkKVIfExist: function(table,key,value){
+		var confcheck = new GlideAggregate(table);
+		confcheck.addQuery(''+key+'',''+value+'');
+		confcheck.addAggregate('COUNT');
+		confcheck.query();
+		if (confcheck.next()) {
+			if (confcheck.getAggregate('COUNT') != '0') {
+				return true;
+			} else {
+				return false;
+			}
+		}	
+	},
+	
+	returnUTCsnowDate: function(timestamp) {
+		var myDate=new Date(parseInt(timestamp));
+		var myDate2=myDate.toUTCString();
+		var month=myDate.getUTCMonth()+1;
+		var day=myDate2.toString().split(' ')[1];
+		var year=myDate.getUTCFullYear();
+		var time=myDate2.toString().split(' ')[4];
+		var gDate = new GlideDateTime(year+'-'+month+'-'+day+' '+time);
+		return gDate;
+	},
+	
+	returnDuration: function(obj) {
+		var getDur=new GlideRecordSecure('x_agsa_sapcockpit_last_metric');
+		getDur.addQuery('connectorid',obj.connectorId);
+		getDur.addQuery('metric','JOBS_DURATION');
+		getDur.addQuery('target',obj.target);
+		getDur.orderByDesc('measuretime');
+		getDur.query();
+		if (getDur.next()) {
+			return getDur.value;
+		}
+	},
+	
+	returnStatus: function(obj) {
+		var getStat=new GlideRecordSecure('x_agsa_sapcockpit_last_metric');
+		getStat.addQuery('connectorid',obj.connectorId);
+		getStat.addQuery('metric','JOBS_STATUS');
+		getStat.addQuery('target',obj.target);
+		getStat.orderByDesc('measuretime');
+		getStat.query();
+		if (getStat.next()) {
+			if (getStat.value == 'true' ) {
+				return 'OK';
+			} else {
+				return 'ERROR';
+			}
+		}
+	},
+	
+	returnLastCheckValue: function(obj) {
+		var gr=new GlideRecordSecure('x_agsa_sapcockpit_metric');
+		gr.addQuery('connectorid',obj.connectorId);
+		gr.addQuery('metric',obj.metricId);
+		gr.addQuery('target',obj.target);
+		gr.orderByDesc('measuretime');
+		gr.setLimit(1);
+		gr.query();
+		if (gr.next()) {
+			return gr.value;
+		} else {
+			return 'NO DATA';
+		}
+	},
+	
+	returnInfo: function(unit,target,metric,sid){
+		obj={};
+		var getStatus=new GlideAggregate('x_agsa_sapcockpit_last_metric');
+		getStatus.addQuery('name',metric);
+		getStatus.addQuery('value',false);
+		getStatus.addQuery('sid',sid);
+		getStatus.addAggregate('COUNT');
+		getStatus.query();
+		if (getStatus.next()) {
+			if (getStatus.getAggregate('COUNT') !='0') {
+				obj.status='false';
+			} else {
+				obj.status='true';
+			}
+		}
+		obj.unit=unit;
+		obj.target=target;
+		obj.url='/nav_to.do?uri=x_agsa_sapcockpit_last_metric_list.do?sysparm_query=sid='+sid+'^name='+metric;
+		return obj;
+	},
+	
+	standardDeviation: function(values){
+		var avg = this.average(values);		
+		var squareDiffs = values.map(function(value){
+			var diff = value - avg;
+			var sqrDiff = diff * diff;
+			return sqrDiff;
+		});
+		var avgSquareDiff = this.average(squareDiffs);
+		var stdDev = Math.sqrt(avgSquareDiff);
+		return stdDev;
+	},
+	
+	average: function(data){
+		var sum = data.reduce(function(sum, value){
+			return sum + value;
+		}, 0);
+		var avg = sum / data.length;
+		return avg;
+	},
+		
+	getCount: function(days,sid) {
+		var count = new GlideAggregate('x_agsa_sapcockpit_alarm');
+		if (sid != '') {
+				count.addQuery('sid',sid);
+		}
+		count.addQuery('sys_updated_on', '>', gs.daysAgoStart(days));
+		count.addQuery('sys_updated_on', '<', gs.daysAgoEnd(days));
+		count.addQuery('acknowledge','false');
+		count.addAggregate('COUNT');
+		count.query();
+		count.next();
+		return count.getAggregate('COUNT');
+	},
+	
+    type: 'ProMonitorLib'
+};
+
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-25 17:09:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>44986959db8ecb407bd0f13daf961961</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>ProMonitorLib</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_script_include_44986959db8ecb407bd0f13daf961961</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:04:33</sys_updated_on>
+    </sys_script_include>
+</record_update>

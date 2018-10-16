@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.bckOk {
+  background-color:#3bc999!important;
+}
+
+.bckCritical {
+  background-color:#c71f3b!important;
+}
+
+.bckMajor {
+  background-color:#ff8700!important;
+}
+
+.bckMinor {
+  background-color:#6b2cec!important;
+}
+
+.bckWarning {
+  background-color:#ecd82c!important;
+}
+
+.bckInfo {
+  background-color:#3bb3c9!important;
+}
+
+.nowrap {
+	white-space:nowrap;
+}
+
+table.sstatus th,table.sstatus td {
+	text-align:center;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>angdynamicsystemoverview</id>
+        <internal>false</internal>
+        <link/>
+        <name>AngDynamicSystemOverview</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <script><![CDATA[(function() {
+	hana_list=[];
+	netw_list=[];
+	sid=[];
+	i=0;
+	j=0;
+	data.line=[];
+	data.lineh=[];
+	data.system=[]
+	data.systemn=[];
+	
+	// Get system list and Type
+	var systems = new GlideAggregate("x_agsa_sapcockpit_last_metric");
+	systems.addAggregate('COUNT', 'sid');
+	systems.query();
+	while(systems.next()) {
+		sid.push(systems.sid.toString());
+	}
+	
+	for (i=0;i<sid.length;i++) {		
+		var syst = new GlideRecordSecure("x_agsa_sapcockpit_last_metric");
+		syst.addQuery('sid', sid[i]);
+		syst.setLimit(1)
+		syst.query();
+		syst.next()
+		if (syst.type == "HANA" ) 
+			data.system.push(syst.sid.toString());
+		else 
+			data.systemn.push(syst.sid.toString());
+		}
+	
+	//Building Module List NETWEAVER
+	netw_list=gs.getProperty("x_agsa_sapcockpit.NETWEAVER.Modules").split(',');	
+	for (i=0;i<netw_list.length;i++) {
+		objs={};
+		objs.module=netw_list[i];
+		for (j=0;j<data.systemn.length;j++) {
+			bck = "bck";
+			objs[data.systemn[j]] = {};
+			objs[data.systemn[j]].sid = data.systemn[j];
+			objs[data.systemn[j]].module=netw_list[i];
+			sever=getSeverity(netw_list[i],data.systemn[j]);
+			if (sever == 5) {
+				objs[data.systemn[j]].bck = 'bckCritical';
+				objs[data.systemn[j]].value = "Critical ("+getAlmCount(netw_list[i],data.systemn[j])+")";
+			}
+			if (sever == 4) {
+				objs[data.systemn[j]].bck = 'bckMajor';
+				objs[data.systemn[j]].value = "Major ("+getAlmCount(netw_list[i],data.systemn[j])+")";
+			}
+			if (sever == 3) {
+				objs[data.systemn[j]].bck = 'bckMinor';
+				objs[data.systemn[j]].value = "Minor ("+getAlmCount(netw_list[i],data.systemn[j])+")";
+			}
+			if (sever == 2) {
+				objs[data.systemn[j]].bck = 'bckWarning';
+				objs[data.systemn[j]].value = "Warning ("+getAlmCount(netw_list[i],data.systemn[j])+")";
+			}
+			if (sever == 1) {
+				objs[data.systemn[j]].bck = 'bckOk';
+				objs[data.systemn[j]].value = "Info ("+getAlmCount(netw_list[i],data.systemn[j])+")";
+			}
+			if (sever == 0) {
+				objs[data.systemn[j]].bck = 'bckOk';
+				objs[data.systemn[j]].value = 'OK';
+			}
+		}
+	data.line.push(objs);
+	}
+	data.cols = Object.keys(data.line[0]);
+	
+	//Building Module List HANA
+	hana_list=gs.getProperty("x_agsa_sapcockpit.HANA.Modules").split(',');	
+	for (i=0;i<hana_list.length;i++) {
+		objs={};
+		objs.module=hana_list[i];
+		for (j=0;j<data.system.length;j++) {
+			bck = "bck";
+			objs[data.system[j]] = {};
+			objs[data.system[j]].sid = data.system[j];
+			objs[data.system[j]].module=hana_list[i];
+			sever=getSeverity(hana_list[i],data.system[j]);
+			if (sever == 5) {
+				objs[data.system[j]].bck = 'bckCritical';
+				objs[data.system[j]].value = "Critical ( "+getAlmCount(hana_list[i],data.system[j])+" )";
+			}
+			if (sever == 4) {
+				objs[data.system[j]].bck = 'bckMajor';
+				objs[data.system[j]].value = "Major ( "+getAlmCount(hana_list[i],data.system[j])+" )";
+			}
+			if (sever == 3) {
+				objs[data.system[j]].bck = 'bckMinor';
+				objs[data.system[j]].value = "Minor ( "+getAlmCount(hana_list[i],data.system[j])+" )";
+			}
+			if (sever == 2) {
+				objs[data.system[j]].bck = 'bckWarning';
+				objs[data.system[j]].value = "Warning ( "+getAlmCount(hana_list[i],data.system[j])+" )";
+			}
+			if (sever == 1) {
+				objs[data.system[j]].bck = 'bckInfo';
+				objs[data.system[j]].value = "Info ( "+getAlmCount(hana_list[i],data.system[j])+" )";
+			}
+			if (sever == 0) {
+				objs[data.system[j]].bck = 'bckOk';
+				objs[data.system[j]].value = 'OK';
+			}
+		}
+	data.lineh.push(objs);
+	}
+	data.colsh = Object.keys(data.lineh[0]);
+
+	function getAlmCount(mod,sid) {
+		var cnt = new GlideAggregate('x_agsa_sapcockpit_alarm');
+		cnt.addQuery('sid',sid);
+		cnt.addQuery('module',mod);
+		cnt.addQuery('acknowledge','false');
+		cnt.addAggregate('COUNT');
+		cnt.query(); 
+		if (cnt.next()) 
+			return cnt.getAggregate('COUNT')
+		return 0;
+	}
+	
+	function getSeverity(mod,sid) {
+		var getSev = new GlideRecordSecure("x_agsa_sapcockpit_alarm");
+		getSev.addQuery('sid',sid);
+		getSev.addQuery('module',mod);
+		getSev.addQuery('acknowledge','false');
+		getSev.orderByDesc('severity_code');
+		getSev.query();
+		if (getSev.next()) 
+			return getSev.severity_code;
+		return 0;
+	}	
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-12-11 13:24:26</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e9f7b654db0fcf007bd0f13daf961975</sys_id>
+        <sys_mod_count>284</sys_mod_count>
+        <sys_name>AngDynamicSystemOverview</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_widget_e9f7b654db0fcf007bd0f13daf961975</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:46:11</sys_updated_on>
+        <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
+<br/>
+<div ng-controller="getData">
+<table >
+  <tr>
+    <td>
+    	<h2>Netweaver's System Summary</h2>
+      <form>
+      <div class="form-group">
+        <div class="input-group">
+        <input type="text" style="float:left;width:auto;" class="form-control" placeholder="Search Module Name" ng-model="searchModule"  size="35"/>
+        </div>      
+      </div>
+    </form>
+    </td>  
+  </tr>
+</table>
+<table class='sstatus' sytle='width:30%;'>
+	<thead>
+  	<tr>
+    	<th ng-repeat="column in data.cols" class="sstatus" style="color:#2c373f;">{{column}}</th>
+		</tr>
+	</thead>
+  <tr ng-repeat="row in data.line | orderBy:sortType:sortReverse | filter:searchModule | filter:search.id">
+     <td ng-repeat="column in data.cols" class="sstatus {{row[column].bck}} nowrap">
+       <a ng-if="$index == 0" href="nav_to.do?uri=/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge%3Dfalse%5Emodule={{row[column]}}" target="_blank">{{row[column]}}</a>
+       <a ng-if="$index != 0" href="nav_to.do?uri=/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid={{row[column].sid}}^module={{row[column].module}}"  target="_blank">{{row[column].value}}</a>
+     </td>
+   </tr>
+</table>
+<br>
+<br>
+
+  <table  width="75%" >
+<tr>
+  <td>
+    	<h2>HANA's System Summary</h2>
+  </td>
+  </tr>
+</table>
+
+<table class='sstatus' sytle='width:30%;'>
+	<thead>
+  	<tr>
+    	<th ng-repeat="column in data.colsh" class="sstatus" style="color:#2c373f;">{{column}}</th>
+		</tr>
+	</thead>
+  <tr ng-repeat="row in data.lineh | orderBy:sortType:sortReverse | filter:searchModule | filter:search.id">
+     <td ng-repeat="column in data.colsh" class="sstatus {{row[column].bck}}">
+       <a ng-if="$index == 0" href="nav_to.do?uri=/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge%3Dfalse%5Emodule={{row[column]}}" target="_blank">{{row[column]}}</a>
+       <a ng-if="$index != 0" href="nav_to.do?uri=/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid={{row[column].sid}}^module={{row[column].module}}"  target="_blank">{{row[column].value}}</a>
+     </td>
+   </tr>
+</table>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element extends="sys_import_set_row" label="WS Alarms" max_length="40" name="x_agsa_sapcockpit_ws_alarms" type="collection">
+        <element attributes="import_attribute_name=client,edge_encryption_enabled=true" label="Client" max_length="100" name="client" type="string"/>
+        <element attributes="import_attribute_name=company,edge_encryption_enabled=true" label="Company" max_length="100" name="company" type="string"/>
+        <element attributes="import_attribute_name=configid,edge_encryption_enabled=true" label="ConfigID" max_length="100" name="configid" type="string"/>
+        <element attributes="import_attribute_name=connectorid,edge_encryption_enabled=true" label="ConnectorID" max_length="100" name="connectorid" type="string"/>
+        <element attributes="import_attribute_name=customsource,edge_encryption_enabled=true" label="CustomSource" max_length="100" name="customsource" type="string"/>
+        <element attributes="import_attribute_name=description,edge_encryption_enabled=true" label="Description" max_length="100" name="description" type="string"/>
+        <element attributes="import_attribute_name=host,edge_encryption_enabled=true" label="Host" max_length="100" name="host" type="string"/>
+        <element attributes="import_attribute_name=id,edge_encryption_enabled=true" label="ID" max_length="1000" name="id" type="string"/>
+        <element attributes="import_attribute_name=instance,edge_encryption_enabled=true" label="Instance" max_length="100" name="instance" type="string"/>
+        <element attributes="import_attribute_name=item,edge_encryption_enabled=true" label="Item" max_length="100" name="item" type="string"/>
+        <element attributes="import_attribute_name=message,edge_encryption_enabled=true" label="Message" max_length="1000" name="message" type="string"/>
+        <element attributes="import_attribute_name=metric,edge_encryption_enabled=true" label="Metric" max_length="100" name="metric" type="string"/>
+        <element attributes="import_attribute_name=module,edge_encryption_enabled=true" label="Module" max_length="100" name="module" type="string"/>
+        <element attributes="import_attribute_name=severity,edge_encryption_enabled=true" label="Severity" max_length="100" name="severity" type="string"/>
+        <element attributes="import_attribute_name=severity_code,edge_encryption_enabled=true" label="Severity Code" max_length="100" name="severity_code" type="string"/>
+        <element attributes="import_attribute_name=sid,edge_encryption_enabled=true" label="Sid" max_length="100" name="sid" type="string"/>
+        <element attributes="import_attribute_name=subsystemid,edge_encryption_enabled=true" label="SubsystemID" max_length="100" name="subsystemid" type="string"/>
+        <element attributes="import_attribute_name=target,edge_encryption_enabled=true" label="Target" max_length="100" name="target" type="string"/>
+        <element attributes="import_attribute_name=toclear,edge_encryption_enabled=true" label="ToClear" max_length="100" name="toclear" type="string"/>
+        <element attributes="import_attribute_name=user,edge_encryption_enabled=true" label="User" max_length="100" name="user" type="string"/>
+        <element attributes="import_attribute_name=u_type,edge_encryption_enabled=true" label="Type" max_length="40" name="u_type" type="string"/>
+    </element>
+</database>

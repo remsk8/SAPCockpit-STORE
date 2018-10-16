@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Metric" max_length="40" name="x_agsa_sapcockpit_metric" type="collection">
+        <element label="Client" max_length="100" name="client" type="string"/>
+        <element label="Company" max_length="40" name="company" type="string"/>
+        <element label="ConfigID" max_length="100" name="configid" type="string"/>
+        <element label="ConnectorID" max_length="100" name="connectorid" type="string"/>
+        <element label="CustomSource" max_length="100" name="customsource" type="string"/>
+        <element label="Data" max_length="40" name="data" type="integer"/>
+        <element label="Description" max_length="255" name="description" type="string"/>
+        <element label="ExecutionTime" max_length="40" name="executiontime" type="glide_date_time"/>
+        <element label="Hasmax" max_length="40" name="hasmax" type="boolean"/>
+        <element label="Host" max_length="100" name="host" type="string"/>
+        <element label="Instance" max_length="100" name="instance" type="string"/>
+        <element label="Instancename" max_length="100" name="instancename" type="string"/>
+        <element label="Isasync" max_length="40" name="isasync" type="boolean"/>
+        <element label="Item" max_length="100" name="item" type="string"/>
+        <element label="MeasureTime" max_length="40" name="measuretime" type="string"/>
+        <element label="Metric" max_length="100" name="metric" type="string"/>
+        <element label="Module" max_length="100" name="module" type="string"/>
+        <element display="true" label="Name" max_length="100" name="name" type="string"/>
+        <element label="SampleMax" max_length="100" name="samplemax" type="string"/>
+        <element label="SampleRate" max_length="100" name="samplerate" type="string"/>
+        <element label="Sid" max_length="40" name="sid" type="string"/>
+        <element label="Target" max_length="100" name="target" type="string"/>
+        <element label="Type" max_length="40" name="type" type="integer"/>
+        <element label="Unit" max_length="20" name="unit" type="string"/>
+        <element label="Unitshort" max_length="20" name="unitshort" type="string"/>
+        <element label="User" max_length="50" name="user" type="string"/>
+        <element label="Value" max_length="50" name="value" type="string"/>
+    </element>
+</database>

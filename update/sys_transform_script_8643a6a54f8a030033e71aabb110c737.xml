@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_transform_script">
+    <sys_transform_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <map display_value="WS Alarms">a6f25595db4ecb407bd0f13daf961986</map>
+        <order>90</order>
+        <script><![CDATA[(function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
+	if (action == "update") {
+		if (target.locked_until != '') {
+			var gdt1=new GlideDateTime();
+			var dte=target.locked_until.toString();
+			var gdt2=new GlideDateTime(dte);
+			if (gdt1.compareTo(gdt2) != 1) { // Equals is 0 , earlier is 1, later is -1 // if locked, 
+				ignore=true;
+				//gs.info('Locked '+target.message+' '+target.id);
+			}
+		}
+	}
+})(source, map, log, target);]]></script>
+        <sys_class_name>sys_transform_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-26 16:04:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>8643a6a54f8a030033e71aabb110c737</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>onBefore</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_transform_script_8643a6a54f8a030033e71aabb110c737</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-10-26 16:04:13</sys_updated_on>
+        <when>onBefore</when>
+    </sys_transform_script>
+</record_update>

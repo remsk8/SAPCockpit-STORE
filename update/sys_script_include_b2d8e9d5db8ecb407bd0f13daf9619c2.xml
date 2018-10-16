@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_agsa_sapcockpit.ProMonitorReportLib</api_name>
+        <client_callable>false</client_callable>
+        <description>ProMonitorReportLib</description>
+        <name>ProMonitorReportLib</name>
+        <script><![CDATA[//
+//
+
+var ProMonitorReportLib = Class.create();
+ProMonitorReportLib.prototype = {
+    initialize: function() {
+		this.log = new global.GSLog('com.snc.ProMonitorReportLib.log', 'ProMonitorReportLib');		
+    },
+    
+    CalcReport: function(date,type,debug) {
+		if (debug > 0)  
+			this.log.setLevel("debug");
+		
+		var entryItem= {};
+
+		// get Start Date and End date depending on the date entered in parameter
+		var dateparameters=this._dateGenerate(date.toString());
+		this.log.logDebug('GENERATE '+dateparameters.TimePeriod+' REPORT FROM :'+dateparameters.startDate+' TO '+dateparameters.endDate);
+
+		// type is JOBS by default or transaction when set the string 'transaction'
+		// Entry Item is the object to be inserted in Report DB table
+		var list=[];
+		var url;
+
+		// Get systems and target list
+		var targetlist=this._extractMetricData(type);
+		var syst=this._extractSystem(type);
+
+		// Cleanup
+		this._cleanUp(date,type);
+		
+		// foreach targetlist
+		for (var j=0;j<targetlist.length;j++) {
+			this.log.logDebug('->Target for each '+targetlist[j]);
+			for (var c=0;c<syst.length;c++) {
+				this.log.logDebug('--->Syst for each '+syst[c]);
+				var count=new GlideRecordSecure('x_agsa_sapcockpit_metric');
+				if (type == 'transaction') 
+					count.addQuery('metric','TRANSACTION_TIMES');
+				else
+					count.addQuery('metric','JOBS_DURATION');
+				count.addQuery('sys_created_on','>=',dateparameters.startDate);
+				count.addQuery('sys_created_on','<=',dateparameters.endDate);
+				count.addQuery('sid',syst[c]);
+				count.addQuery('target',targetlist[j]);
+				count.query();
+				while (count.next()) {
+					list.push(parseFloat(count.data));
+				}
+				entryItem.system=syst[c];
+				entryItem.job=targetlist[j];
+				entryItem.count=list.length;
+				entryItem.average=this._average(list);
+				entryItem.sd=this._standardDeviation(list);
+				if (type == 'transaction')
+					url="target="+targetlist[j]+"^sid="+syst[c]+"^name=TRANSACTION_TIMES^sys_created_onON"+date+"@javascript:gs.dateGenerate('"+date+"','start')@javascript:gs.dateGenerate('"+date+"','end')";
+				else 
+					url="target="+targetlist[j]+"^sid="+syst[c]+"^name=SAPJOBS_DURATION^sys_created_onON"+date+"@javascript:gs.dateGenerate('"+date+"','start')@javascript:gs.dateGenerate('"+date+"','end')";
+				url=encodeURIComponent(url.trim());
+				entryItem.url=gs.getProperty('glide.servlet.uri')+"x_agsa_sapcockpit_metric_list.do?sysparm_query=GOTO"+url;
+				this.log.logDebug(syst[c]+'---'+targetlist[j]+' c:'+entryItem.count+' a:'+entryItem.average+' URL:'+entryItem.url+' sd:'+entryItem.sd+' l:'+list);
+				entryItem.date=date;
+				entryItem.TimePeriod=dateparameters.TimePeriod;
+				this._insertInJobTable(entryItem,type);
+				list=[];
+			}
+		}
+	},
+	
+	_insertInJobTable: function(obj,type) {
+		var gr;
+		if (obj.TimePeriod === 'Daily')
+			gr=new GlideRecordSecure('x_agsa_sapcockpit_dynamic_report_daily');
+		else if (obj.TimePeriod === 'Weekly')
+			gr=new GlideRecordSecure('x_agsa_sapcockpit_dynamic_report_weekly');
+		gr.initialize();
+		gr.system=obj.system;
+		gr.name=obj.job;
+		if (type == 'transaction' )
+			gr.type='Transaction';
+		else
+			gr.type='Job';
+		gr.standard_deviation=obj.sd;
+		gr.count=obj.count;
+		gr.average=obj.average;
+		if (obj.TimePeriod === 'Daily')
+			gr.generation_date=obj.date;
+		else if (obj.TimePeriod === 'Weekly')
+			gr.week_number=parseInt(obj.date.replace("W",""));
+		gr.list_metric=obj.url;
+		gr.insert();
+	},
+	
+	_cleanUp: function(date,type) {
+		var cleaner=new GlideRecordSecure('x_agsa_sapcockpit_dynamic_report_daily');
+		cleaner.addQuery('generation_date','=',date);
+		cleaner.deleteMultiple();
+	},
+	
+	_extractMetricData: function(type) {
+		var myArray=[];
+		var gr=new GlideAggregate('x_agsa_sapcockpit_config');
+		if (type == 'transaction') 
+			gr.addQuery('type','Transaction');
+		else
+			gr.addQuery('type','Job');
+		gr.addAggregate('COUNT', 'name');
+		gr.query();
+		while (gr.next()) {
+			myArray.push(gr.name.toString());
+		}
+		return myArray;
+	},
+	
+	_extractSystem: function(type) {
+		var myArray=[];
+		var count =new GlideAggregate('x_agsa_sapcockpit_last_metric');
+		if (type == 'transaction')
+			count.addQuery('metric','TRANSACTION_DURATION');
+		else
+			count.addQuery('metric','JOBS_DURATION');
+		count.addAggregate('COUNT','sid');
+		count.query();
+		while(count.next()) {
+			myArray.push(count.sid.toString());
+		}
+		return myArray;
+	},
+		
+	_standardDeviation: function(values){
+		var avg = this._average(values);
+		var squareDiffs = values.map(function(value){
+			var diff = value - avg;
+			var sqrDiff = diff * diff;
+			return sqrDiff;
+		});
+		var avgSquareDiff = this._average(squareDiffs);
+		var stdDev = Math.sqrt(avgSquareDiff);
+		return stdDev;
+	},
+
+	_average: function(data){
+		var sum = data.reduce(function(sum, value){
+			return sum + value;
+		}, 0);
+		var avg = sum / data.length;
+		return avg;
+	},
+
+	_dateGenerate: function(date) {
+		// Detect time period
+		var obj={};
+		var DailyPattern = new RegExp("^[2][0-9][0-9][0-9]-");
+		var WeeklyPattern = new RegExp("^W([1-9]|[0-4][0-9]|5[0-2])$");
+		var MonthyPattern = new RegExp("^(0[0-9]|1[0-2]|[0-9])$");
+		var gdt;
+		
+		if (DailyPattern.test(date)) {
+			obj.TimePeriod='Daily';
+			gdt = new GlideDateTime(); 
+			gdt.setDisplayValueInternal(date + " 00:00:00");  
+			obj.startDate=gdt;
+			gdt = new GlideDateTime(); 
+			gdt.setDisplayValueInternal(date + " 23:59:59");  
+			obj.endDate=gdt;
+		}
+		if (WeeklyPattern.test(date)) {
+			obj.weekNumber=parseInt(date.replace("W",""));
+			var year=new Date().getFullYear();
+			var ds=this._getDateOfISOWeek(obj.weekNumber,year);
+			var month=ds.getMonth()+1;
+			gdt = new GlideDateTime(); 
+			gdt.setValue(ds.getFullYear()+'-'+month+'-'+ds.getDate()+' 00:00:0');
+			obj.startDate=gdt;
+			gdt = new GlideDateTime(); 
+			gdt.setValue(ds.getFullYear()+'-'+month+'-'+ds.getDate()+' 23:59:59');
+			gdt.addDaysLocalTime(6);
+			obj.endDate=gdt;
+			obj.TimePeriod='Weekly';
+		}
+		if (MonthyPattern.test(date))
+			TimePeriod='Monthly';
+		   
+		return obj;  
+	}, 
+	
+	_getDateOfISOWeek: function(w,y) {
+		var simple = new Date(y, 0, 1 + (w - 1) * 7);
+		var dow = simple.getDay();
+		var ISOweekStart = simple;
+		if (dow <= 4)
+			ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
+		else
+			ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
+		return ISOweekStart;
+	},
+	
+	_toUTC: function(date) {	
+		var result=date.getNumericValue()-date.getTZOffset();
+		var mydate=new GlideDateTime();
+		mydate.setValue(result);
+		return mydate;
+	},
+	
+    type: 'ProMonitorReportLib'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-25 17:10:25</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b2d8e9d5db8ecb407bd0f13daf9619c2</sys_id>
+        <sys_mod_count>58</sys_mod_count>
+        <sys_name>ProMonitorReportLib</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_script_include_b2d8e9d5db8ecb407bd0f13daf9619c2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:04:33</sys_updated_on>
+    </sys_script_include>
+</record_update>

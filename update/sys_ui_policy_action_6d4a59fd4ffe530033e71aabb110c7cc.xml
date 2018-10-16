@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <disabled>ignore</disabled>
+        <field>system</field>
+        <mandatory>true</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-06-20 08:21:33</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6d4a59fd4ffe530033e71aabb110c7cc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>system</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_ui_policy_action_6d4a59fd4ffe530033e71aabb110c7cc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-06-20 08:21:33</sys_updated_on>
+        <table>x_agsa_sapcockpit_config</table>
+        <ui_policy display_value="Make System Mandatory">5c2a95fd4ffe530033e71aabb110c78b</ui_policy>
+        <visible>ignore</visible>
+    </sys_ui_policy_action>
+</record_update>

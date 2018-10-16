@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Generate Reports Daily</name>
+        <run_as/>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2017-11-03 15:55:29</run_start>
+        <run_time>1969-12-31 23:00:10</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[// DailyReportScript
+
+// set Yesterday date for Daily Reports
+gs.include('ProMonitorReportLib');
+var promonlibreport=new ProMonitorReportLib();
+
+var gdt = new GlideDate().getNumericValue();
+gdt=gdt-86400000;
+var gdt2=new GlideDate();
+gdt2.setValue(gdt);
+
+promonlibreport.CalcReport(gdt2,'job',1);
+
+
+]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-11-03 15:56:14</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7b1e2f40db5a0b007bd0f13daf9619a0</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Generate Reports Daily</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sysauto_script_7b1e2f40db5a0b007bd0f13daf9619a0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-09-18 12:26:57</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Config" max_length="40" name="x_agsa_sapcockpit_config" type="collection">
+        <element display="true" label="Name" max_length="100" name="name" type="string"/>
+        <element label="System" max_length="40" name="system" type="string"/>
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element label="Job" value="Job"/>
+                <element label="Metric" value="Metric"/>
+                <element label="Transaction" value="Transaction"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="system"/>
+        </index>
+    </element>
+</database>

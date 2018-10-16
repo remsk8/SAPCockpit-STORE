@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-08-15 14:10:47</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d523837bdbf35700f1bf001b8a96198f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_agsa_sapcockpit_ws_alarms.import_admin</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_security_acl display_value="x_agsa_sapcockpit_ws_alarms">48234b7bdbf35700f1bf001b8a9619e9</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_d523837bdbf35700f1bf001b8a96198f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-15 14:10:47</sys_updated_on>
+        <sys_user_role display_value="import_admin" name="import_admin">4a6a6e710a0a0bc000e6426eac13db01</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

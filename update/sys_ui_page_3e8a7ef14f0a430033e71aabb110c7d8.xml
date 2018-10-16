@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[displayLoader(true);
+embedReportByParams(jQuery("span[id=report]"), {jvar_report_id:gel("report_sys_id").value});
+setTimeout(function(){displayLoader(false);},2000);
+function displayLoader(show) {
+	  var winH = $j(window).height();
+	  var winW = $j(window).width();
+	  $j("#div_company_loader").css({
+		  opacity: 0.5,
+		  top: 0,
+		  left: 0,
+		  width: "100%",
+		  height: "100%"
+	  });
+	$j("#img_company_loader").css({
+		top: winH/2,
+		left: winW/2
+	});
+  if (show) {
+	  $j("#div_company_loader").show();
+	  $j("#img_company_loader").show();
+  } else {
+	  $j("#div_company_loader").hide();
+	  $j("#img_company_loader").hide();
+  }
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_agsa_sapcockpit_show_report.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"></link>
+  <g:requires name="scripts/GlideV2ChartingIncludes.js" includes="true"/>
+  <g2:evaluate>
+	  var report = RP.getParameterValue('report');
+  </g2:evaluate>
+<input type="hidden" id="report_sys_id" name="report_sys_id" value="$[report]" />
+  <span id="report"/>
+  <style>
+	  #img_company_loader {
+		  display:none;
+		  position:absolute;
+		  z-index:1000;
+		  color: white;
+	  }
+	  #div_company_loader {
+		  display:none;
+		  position:fixed;
+		  background:#000;
+		  z-index:999;
+	  }
+  </style>
+  <div id="div_company_loader">
+  <i id="img_company_loader" class="fa fa-spinner fa-pulse fa-4x"></i>
+ </div>
+</j:jelly>]]></html>
+        <name>show_report</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-27 12:24:17</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>3e8a7ef14f0a430033e71aabb110c7d8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>show_report</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_ui_page_3e8a7ef14f0a430033e71aabb110c7d8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-10-27 12:24:17</sys_updated_on>
+    </sys_ui_page>
+</record_update>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_web_service">
+    <sys_web_service action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <function_name>insert</function_name>
+        <name>MetricInsert</name>
+        <scoped_name>x_agsa_sapcockpit_MetricInsert</scoped_name>
+        <script><![CDATA[(function scriptedWebServiceOperation(request, response) {
+	// insert a bunch of metrics
+
+	// Get Values, payload and also parameters
+	var xmlString=unescape(request.payload);
+	gs.include('ProMonitorLib');
+	var promon=new ProMonitorLib();
+	var wlist=[];
+	var twlist=[];
+	var arrayUtil = new global.ArrayUtil();
+	
+	var obj = gs.xmlToJSON(xmlString);
+	var len=0;
+	var value;
+
+	if (obj.set.metric.name == undefined)
+		len = Object.keys(obj.set.metric).length;
+	else
+		len=1;
+	
+	//get Metric WhiteList and create array or authorized metrics
+	var gr=new GlideRecordSecure('x_agsa_sapcockpit_config');
+	gr.addQuery('type','Metric');
+	gr.query();
+	while(gr.next()) {
+		wlist.push(gr.name.toString());	
+	}
+	//get Job/transaction WhiteList and create array or authorized metrics
+	var ge=new GlideRecordSecure('x_agsa_sapcockpit_config');
+	ge.addQuery('type','Job');
+	ge.query();
+	while(ge.next()) {
+		twlist.push(ge.name.toString());	
+	}
+	
+	// foreach metric, extract the list of properties
+	for (var j=0;j<len;j++) {
+		if (len > 1) {
+			value=obj.set.metric[j];
+		} else {
+			value=obj.set.metric;
+		}
+		// First check if metric is in the whitelist
+		//gs.info('DEBUG name '+obj.set.metric[j].name.toString());
+		if (arrayUtil.contains(wlist,value.name.toString())) {
+			// Then insert/update data in "last metric table"
+			InsertProcess(value);
+		 }
+		 //
+		// IS it a JOB  or a TRANSACTION ? 
+		if ((value.name.toString().indexOf("JOBS_") != -1) || (value.name.toString().indexOf("TRANSACTIONS_TIME") != -1)) {
+			// Check in twlist TARGET
+			if (arrayUtil.contains(twlist,value.target.toString())) {
+				//gs.info('I Found a JOB or a transaction item in WTlist '+value.target.toString()+value.name.toString()+value.sid.toString());
+				InsertProcess(value);
+			}
+		}
+	}
+	
+		
+	function InsertProcess(obj) {
+		// insert data in metric and update/insert value in last metric table
+		if (checkLastMetric(obj) == true ){
+			//gs.info('DEBUG LASTMETRIC Update '+obj.name+" "+obj.sid);
+			LastMetric('update',obj);
+		} else {
+			//gs.info('DEBUG LASTMETRIC Insert '+obj.name+" "+obj.sid);
+			LastMetric('insert',obj);
+		}
+		//gs.info('DEBUG Insert in METRICS '+obj.name+" "+obj.sid);
+		// if the Metric History is enable, insert metric in table
+		if ( gs.getProperty('x_agsa_sapcockpit.Store Metric History') == 'true') {
+				InsertMetric(obj);	 
+		}
+	}
+		
+	
+	function InsertMetric(obj) {
+		var gr = new GlideRecordSecure('x_agsa_sapcockpit_metric');
+		gr.initialize(); 
+		gr.item = obj.item; 
+		gr.instancename = obj.instance; 
+		gr.client = obj.client;
+		gr.user = obj.user;
+		gr.connectorid = obj.connectorId;
+		gr.sid = obj.sid;
+		gr.host = obj.host;
+		gr.target = obj.target;
+		gr.customsource = obj.customsource;
+		gr.company = obj.company;
+		gr.configid = obj.configid;
+		gr.description = obj.description;
+		gr.name = obj.name;
+		gr.executiontime=promon.returnUTCsnowDate(obj.measureTime);
+		gr.value = obj.value;
+		gr.samplerate = obj.samplerate;
+		gr.measuretime = obj.measureTime;
+		gr.metric = obj.metricId;
+		gr.module = obj.module;
+		gr.samplemax = obj.samplemax;
+		gr.hasmax = obj.hasmax;
+		gr.isasync = obj.isasync;
+		gr.type = obj.systemType;
+		gr.unit = obj.unit;
+		gr.unitshort = obj.unitshort;
+		gr.insert();
+	}
+
+	function checkLastMetric(obj) {
+		var gre = new GlideAggregate('x_agsa_sapcockpit_last_metric'); 
+		gre.addQuery('connectorid',obj.connectorId);
+		gre.addQuery('metric',obj.metricId);
+		gre.addQuery('target',obj.target);
+		gre.addAggregate('COUNT');
+		gre.query();
+		if (gre.next()) {
+			if (gre.getAggregate('COUNT') != '0') {
+				return true;
+			} else {
+				return false;
+			}	
+		}
+	}
+
+	function LastMetric(operation,obj) {
+		if (operation == 'insert') {
+			var gr = new GlideRecordSecure('x_agsa_sapcockpit_last_metric');
+			gr.initialize(); 
+			gr.item = obj.item; 
+			gr.instancename = obj.instance; 
+			gr.company= obj.company;
+			gr.client = obj.client;
+			gr.user = obj.user;
+			gr.connectorid = obj.connectorId;
+			gr.sid = obj.sid;
+			gr.host = obj.host;
+			gr.target = obj.target;
+			gr.customsource = obj.customsource;
+			gr.configid = obj.configid;
+			gr.description = obj.description;
+			gr.executiontime=promon.returnUTCsnowDate(obj.measureTime);
+			gr.name = obj.name;
+			gr.value = obj.value;
+			gr.samplerate = obj.samplerate;
+			gr.measuretime = obj.measureTime;
+			gr.metric = obj.metricId;
+			gr.module = obj.module;
+			gr.samplemax = obj.samplemax;
+			gr.hasmax = obj.hasmax;
+			gr.isasync = obj.isasync;
+			gr.type = obj.systemType;
+			gr.unit = obj.unit;
+			gr.unitshort = obj.unitshort;
+			gr.insert();
+		}
+		if (operation == 'update') {
+			var gre = new GlideRecordSecure('x_agsa_sapcockpit_last_metric'); 
+			gre.addQuery('connectorid',obj.connectorId);
+			gre.addQuery('metric',obj.metricId);
+			gre.addQuery('target',obj.target);
+			gre.query();
+			gre.next();
+			if (obj.measureTime > gre.measuretime) {
+				gre.item = obj.item; 
+				gre.instancename = obj.instance; 
+				gre.client = obj.client;
+				gre.user = obj.user;
+				gre.sid = obj.sid;
+				gre.company = obj.company;
+				gre.host = obj.host;
+				gre.target = obj.target;
+				gre.customsource = obj.customsource;
+				gre.configid = obj.configid;
+				gre.description = obj.description;
+				gre.name = obj.name;
+				gre.value = obj.value;
+				gre.samplerate = obj.samplerate;
+				gre.measuretime = obj.measureTime;
+				gre.executiontime=promon.returnUTCsnowDate(obj.measureTime);
+				gre.module = obj.module;
+				gre.samplemax = obj.samplemax;
+				gre.hasmax = obj.hasmax;
+				gre.isasync = obj.isasync;
+				gre.type = obj.systemType;
+				gre.unit = obj.unit;
+				gre.unitshort = obj.unitshort;
+				gre.update();
+			}
+		}
+	}
+})(request, response);
+]]></script>
+        <short_description>Get a bunch of Metric from ProMonitor</short_description>
+        <sys_class_name>sys_web_service</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-25 16:50:20</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c244a155db8ecb407bd0f13daf9619ad</sys_id>
+        <sys_mod_count>57</sys_mod_count>
+        <sys_name>MetricInsert</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_web_service_c244a155db8ecb407bd0f13daf9619ad</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:04:55</sys_updated_on>
+        <wsdl>https://ven02626.service-now.com/x_agsa_sapcockpit_MetricInsert.do?WSDL</wsdl>
+        <wsdl_compliance>false</wsdl_compliance>
+    </sys_web_service>
+</record_update>

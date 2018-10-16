@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category/>
+        <css>body {
+	background-color:white;
+}</css>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>dynamic_system_overview</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <short_description>View System Overall Panorama</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-12-21 22:09:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>8cff4c3fdbc78b407bd0f13daf961983</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>dynamic_system_overview</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_page_8cff4c3fdbc78b407bd0f13daf961983</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-27 12:24:42</sys_updated_on>
+        <title>Dynamic System Overview</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=8cff4c3fdbc78b407bd0f13daf961983"/>
+</record_update>

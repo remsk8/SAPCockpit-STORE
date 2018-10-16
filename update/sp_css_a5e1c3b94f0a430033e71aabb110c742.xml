@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_css">
+    <sp_css action="INSERT_OR_UPDATE">
+        <css>table.sstatus {&#13;
+		border-radius:0!important;&#13;
+		overflow:visible!important;&#13;
+		border-spacing: 0px!important;&#13;
+		padding: 40px!important;&#13;
+		background-color: #242f36!important;&#13;
+		color:white;&#13;
+		border: none;&#13;
+		font-size:1em;&#13;
+		box-shadow: 0 6px 6px -3px #242f36;&#13;
+		width: 100%;&#13;
+		font-family:helvetica;&#13;
+}&#13;
+	&#13;
+table.sstatus a {&#13;
+	color:#242f36&#13;
+}&#13;
+	&#13;
+table.sstatus tbody tr td:first-child a {&#13;
+	color:#b8daff;&#13;
+}&#13;
+&#13;
+th.sstatus {&#13;
+	text-align: left;&#13;
+	padding: 4px;&#13;
+	height: 50px;&#13;
+	text-transform: uppercase;&#13;
+	border-left: 1px solid rgba(128,128,128,0.3)!important;&#13;
+	text-transform: uppercase;&#13;
+	background-color: #b2c2cf;&#13;
+}&#13;
+	&#13;
+th.sstatus, td.sstatus {&#13;
+	padding: 8px 15px!important;&#13;
+	text-align: left;&#13;
+	border-bottom: 1px solid rgba(91,108,118,0.2);&#13;
+	border-top: none;&#13;
+	border-left: 1px solid rgba(128,128,128,0.1);&#13;
+}&#13;
+	&#13;
+table.sstatus tbody tr:nth-child(odd) {&#13;
+	background-color:rgba(255,255,255,0.1);&#13;
+}&#13;
+&#13;
+table.sstatus tbody tr td:nth-child(even) {&#13;
+	background-color:rgba(255,255,255,0.1);&#13;
+}&#13;
+&#13;
+.formlink {&#13;
+	color:white;&#13;
+}&#13;
+&#13;
+tr.header {&#13;
+	 background-color:#B2C2CF;&#13;
+}&#13;
+&#13;
+.qaccess {&#13;
+	border:none!important;&#13;
+	border-radius:0!important;&#13;
+	width:100%;&#13;
+	color: white!important;&#13;
+	letter-spacing: 1px;&#13;
+	background:#4e575c!important;&#13;
+}&#13;
+&#13;
+th.sstatus a {&#13;
+	font-weight:800;&#13;
+}&#13;
+&#13;
+span.sstatus {&#13;
+	color: lightgreen;&#13;
+	padding: 5px;&#13;
+}&#13;
+&#13;
+span.plusBtn {&#13;
+	display: inline-block;&#13;
+	background-color: #b2c2cf;&#13;
+	width: 30px;&#13;
+	text-align: center;&#13;
+	color: black;&#13;
+	height: 30px;&#13;
+	margin-left: 10px;&#13;
+	line-height: 29px;&#13;
+}&#13;
+</css>
+        <name>AgentilStyle</name>
+        <sys_class_name>sp_css</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-27 12:57:35</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a5e1c3b94f0a430033e71aabb110c742</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AgentilStyle</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_css_a5e1c3b94f0a430033e71aabb110c742</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-10-27 12:57:35</sys_updated_on>
+    </sp_css>
+</record_update>

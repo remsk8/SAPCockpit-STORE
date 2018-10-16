@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description>Display Alarm repartition on DetailView in the portal</description>
+        <direct>false</direct>
+        <endpoint>x_agsa_sapcockpit_GenAlarmRepartition.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<g:requires name="scripts/GlideV2ChartingIncludes.js" includes="true"/>
+<g2:evaluate>
+var system = RP.getParameterValue('system');
+</g2:evaluate>
+<div id="gr1" style="height:400px;" />
+<script>
+	var params = {sysparm_title: "Alarm Severity repartition per System : $[system]",  sysparm_field: "severity", sysparm_type: "pie", sysparm_table:  "x_agsa_sapcockpit_alarm", sysparm_aggregate: "COUNT",  sysparm_report_size: "BIG", sysparm_query: "acknowledge=false^sid=$[system]"  };
+	var div = $j("#gr1");
+	embedReportByParams(div, params);
+</script>
+</j:jelly>]]></html>
+        <name>GenAlarmRepartition</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-30 10:34:39</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>2a2eb576db4607007bd0f13daf9619e1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GenAlarmRepartition</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_ui_page_2a2eb576db4607007bd0f13daf9619e1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-10-30 10:34:39</sys_updated_on>
+    </sys_ui_page>
+</record_update>

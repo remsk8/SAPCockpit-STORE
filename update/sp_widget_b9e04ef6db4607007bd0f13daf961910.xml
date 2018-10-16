@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+	var ctx = document.getElementById("myChart3");
+	var myLineChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			//labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","sadf","rtert"],
+			labels: c.data.myDate3,
+			datasets: [{
+					label: 'TRANSACTION BLOCKED COUNT',
+					data: c.data.value3,
+					fill: false,
+					borderColor: '#c71f3b',
+					pointBackgroundColor: '#c71f3b',
+					borderWidth: 1
+				}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:false
+					}
+				}]
+			}
+		}
+	});
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>angcharts-connected</id>
+        <internal>false</internal>
+        <link/>
+        <name>AngCharts Tblocked</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+		data.system = $sp.getParameter('system');
+		data.value3=[];
+		data.myDate3=[];
+		var getData3=new GlideRecordSecure('x_agsa_sapcockpit_metric');
+		getData3.addEncodedQuery('name=TRANSACTIONS_BLOCKED_COUNT^sid='+data.system);
+		getData3.setLimit(10);
+		getData3.orderByDesc('sys_created_on');
+		getData3.query();
+		while (getData3.next()) {
+			data.value3.push(parseInt(getData3.data));
+			data.myDate3.push(getData3.sys_created_on.getDisplayValue().split(' ')[1].toString());
+		}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-30 10:46:22</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b9e04ef6db4607007bd0f13daf961910</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>AngCharts Tblocked</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_widget_b9e04ef6db4607007bd0f13daf961910</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:45:19</sys_updated_on>
+        <template><![CDATA[<canvas id="myChart3" width="200" height="200"/>]]></template>
+    </sp_widget>
+</record_update>

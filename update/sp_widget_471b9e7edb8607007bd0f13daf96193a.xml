@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>angstatuswidgeth</id>
+        <internal>false</internal>
+        <link/>
+        <name>AngStatusWidgetH</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	gs.include('ProMonitorLib');
+	var promon=new ProMonitorLib();
+	obj={};
+	data.list=[];
+	alamCL=[];
+	alamRS='';
+	system=$sp.getParameter('system');
+	// First Get Alarm info
+
+	var value=100-(parseInt(promon.getCount(1,system))*100/parseInt(promon.getCount(0,system))).toFixed(0);
+	value=value.toString();
+	obj.unit='Todays Alarm (yesterday)';
+  if (value.charAt(0) != "-") {
+		obj.target=promon.getCount(0,system)+' (+' +value+'%)';
+	} else {
+		obj.target=promon.getCount(0,system)+' (' +value+'%)';
+	}
+	obj.status="";
+	data.list.push(obj);
+	obj={};		
+	
+	data.list.push(promon.returnInfo('Service Status','ALL','SERVICE_STATUS',system));
+	data.list.push(promon.returnInfo('NODE Availability','ALL','SYSTEM_AVAILABILITY',system));
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-30 12:41:20</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>471b9e7edb8607007bd0f13daf96193a</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>AngStatusWidgetH</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_widget_471b9e7edb8607007bd0f13daf96193a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-27 12:18:37</sys_updated_on>
+        <template><![CDATA[<br>
+<br>
+<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
+<table class='sstatus' sytle='width:30%;'>
+	<thead>
+		<tr>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Unit'; sortReverse = !sortReverse">Unit<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col0' &amp;&amp; sortReverse"/></a></th>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Target'; sortReverse = !sortReverse">Target<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col1' &amp;&amp; sortReverse"/></a></th>
+ 			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Value'; sortReverse = !sortReverse">Status<span ng-show="sortType == 'col0' &amp;&amp; !sortReverse"></span><span ng-show="sortType == 'col2' &amp;&amp; sortReverse"/></a></th>
+		</tr>
+	</thead>
+	<tr ng-repeat="item in data.list | orderBy:sortType:sortReverse | filter:searchAlarm">
+		<td class="sstatus"><a href="{{item.url}}" target="_blank">{{item.unit}}</a> </td>
+ 		<td class="sstatus">{{item.target}}</td>
+		<td class="sstatus" ng-if='item.status == "true"' style='background-color:#3bc999;text-align:center;'>OK</td>
+		<td class="sstatus" ng-if='item.status == "false"' style='background-color:#c71f3b;text-align:center;'>FAILED</td>
+ 		<td class="sstatus" ng-if='item.status == ""' style='background-color:#3bc999;text-align:center;'></td>
+  </tr>
+</table>
+]]></template>
+    </sp_widget>
+</record_update>

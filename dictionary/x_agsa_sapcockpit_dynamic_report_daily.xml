@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element extends="x_agsa_sapcockpit_dynamic_report" label="Dynamic Report Daily" max_length="40" name="x_agsa_sapcockpit_dynamic_report_daily" type="collection">
+        <element label="Generation Date" max_length="40" name="generation_date" type="glide_date"/>
+    </element>
+</database>

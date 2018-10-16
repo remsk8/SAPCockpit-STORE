@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>td.sstatus {
+	white-space:nowrap;
+ 	font-size:13px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>jobreport</id>
+        <internal>false</internal>
+        <link/>
+        <name>JobReport</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <script><![CDATA[(function() {
+	// Set the first Line
+	data.header=[];
+	data.headerw=[];
+	var joblist=[];
+	data.body=[];
+	data.bodyw=[];
+	obj={};
+	data.system=$sp.getParameter("system");
+	data.options=[{value:'!!',label:'All'}];
+	slist=[];
+	
+	// Generate week numbers
+	var gdte = new GlideDateTime();
+	var current=gdte.getWeekOfYearUTC()-1;
+	
+	// Get Joblist
+	var count = new GlideRecordSecure('x_agsa_sapcockpit_config');
+	count.addQuery('type','Job');
+	if (data.system !== null) 
+		count.addQuery('system',data.system);
+	count.query();  
+	while (count.next()) {
+		objj={};
+		objj.name=count.name.toString();
+		objj.system=count.system.toString();
+		joblist.push(objj);
+		if (slist.indexOf(count.system.toString()) === -1 ) {
+			slist.push(count.system.toString());
+		}
+	}
+	for (var k=0;k<slist.length;k++) {
+		data.options.push({value:slist[k],label:slist[k]});
+	} // push options for search field
+	
+	// Generate Daily Table
+	// header
+	var gdt = new GlideAggregate('x_agsa_sapcockpit_dynamic_report_daily');
+	gdt.addEncodedQuery('generation_dateRELATIVEGT@dayofweek@ago@10');
+	gdt.addAggregate('COUNT', 'generation_date');
+	gdt.query();   
+	while (gdt.next()) {
+		data.header.unshift(gdt.generation_date.toString());
+	}
+	
+		for (var de=0;de<5;de++) {
+				data.headerw.push(current-de);
+		}
+
+	for (var p=0;p<data.headerw.length;p++) {
+			if (data.headerw[p] === 0) {
+				data.headerw[p]=52;
+			} else if (data.headerw[p] === -1) {
+				data.headerw[p]=51;
+			} if (data.headerw[p] === -2) {
+				data.headerw[p]=50;
+			} if (data.headerw[p] === -3 ) {
+				data.headerw[p]=49;
+			} if (data.headerw[p] === -4) {
+				data.headerw[p]=48;
+			}
+	}
+	
+	// Build Other line
+	// for each system for Day table
+	for (var j=0;j<joblist.length;j++) {
+		obj.col0=joblist[j].name;
+		obj.col1=joblist[j].system;
+		// Now building column based on gendate
+		for (var d=0;d<data.header.length;d++){
+			var gr=new GlideRecordSecure('x_agsa_sapcockpit_dynamic_report_daily');
+			gr.addQuery('generation_date',data.header[d]);
+			gr.addQuery('system',joblist[j].system);
+			gr.addQuery('name',joblist[j].name);
+			gr.query();
+			while(gr.next()) {
+				obj['col'+(d+2)]=parseInt(gr.average);
+				obj['col'+(d+2)+'data']='('+gr.standard_deviation+'-'+gr.count+')';
+			}
+		}
+
+		data.body.push(obj);
+		obj={};
+	}
+	
+	// for each system for Day table
+	for (var l=0;l<joblist.length;l++) {
+		obj.col0=joblist[l].name;
+		obj.col1=joblist[l].system;
+		// Now building column based on gendate
+		for (var m=0;m<data.headerw.length;m++){
+			var gr2 = new GlideAggregate('x_agsa_sapcockpit_dynamic_report_weekly');
+			gr2.addQuery('week_number',data.headerw[m]);
+			gr2.addQuery('system',joblist[l].system);
+			gr2.addQuery('name',joblist[l].name);
+			gr2.query();
+			while(gr2.next()) {
+				obj['col'+(m+2)]=parseInt(gr2.average);
+				obj['col'+(m+2)+'data']='('+gr2.standard_deviation+'-'+gr2.count+')';
+			}
+		}
+		data.bodyw.push(obj);
+		obj={};
+	}
+	
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-11-02 17:52:14</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>46fe7e37db8ac7007bd0f13daf961907</sys_id>
+        <sys_mod_count>41</sys_mod_count>
+        <sys_name>JobReport</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_widget_46fe7e37db8ac7007bd0f13daf961907</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-30 13:48:21</sys_updated_on>
+        <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
+<h1>JOBS - Average Duration</h1>
+<div>For each job, the average duration is displayed in white for days and weeks (in Seconds). Green counters shows standard deviation and the number of metrics used for aggregation.</div>
+<br/>
+<table width="75%">
+  <tr>
+    <td>
+    <form>
+        <input type="text" style="float:left;width:auto;" class="form-control" placeholder="Search Job Name" ng-model="searchJob"  size="35"/>
+          <span ng-if="data.system === null">
+            <select ng-model="$parent.search.id" ng-init="$parent.search.id='!!'" style="float:left;height:32px;width:130px;">
+              <option ng-repeat="x in data.options" ng-selected="{{search.id == x.value}}" value="{{x.value}}">{{x.label}}</option>
+            </select>
+          </span>
+    </form>
+    </td>
+    <td><a href="x_agsa_sapcockpit_dynamic_report_daily_list.do?sysparm_query=" target="_blank">Daily Job Console</a></td>
+    <td><a href="x_agsa_sapcockpit_dynamic_report_weekly_list.do?sysparm_query=" target="_blank">Weekly Job Console</a></td>
+<tr>
+</table>
+<br/>
+<table class='sstatus'>
+  <thead>
+    <tr>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col0'; sortReverse = !sortReverse">Job Name (Daily)</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col1'; sortReverse = !sortReverse">System</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col2'; sortReverse = !sortReverse">{{data.header[0]}}</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col3'; sortReverse = !sortReverse">{{data.header[1]}}</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col4'; sortReverse = !sortReverse">{{data.header[2]}}</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col5'; sortReverse = !sortReverse">{{data.header[3]}}</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col6'; sortReverse = !sortReverse">{{data.header[4]}}</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col7'; sortReverse = !sortReverse">{{data.header[5]}}</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col8'; sortReverse = !sortReverse">{{data.header[6]}}</a></th>
+      <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col9'; sortReverse = !sortReverse">{{data.header[7]}}</a></th>
+    </tr>
+  </thead>
+  <tr ng-repeat="item in data.body | orderBy:sortType:sortReverse | filter:searchJob | filter:search.id">
+                <td class="sstatus"><a href="x_agsa_sapcockpit_dynamic_report_daily_list.do?sysparm_query=name={{item.col0}}^system={{item.col1}}" target="_blank">{{item.col0}}</a> </td>
+                <td class="sstatus">{{item.col1}} <span class="sstatus"> {{item.col1data}}</span></td>
+                <td class="sstatus">{{item.col2}} <span class="sstatus"> {{item.col2data}}</span></td>
+                <td class="sstatus">{{item.col3}} <span class="sstatus"> {{item.col3data}}</span></td>
+                <td class="sstatus">{{item.col4}} <span class="sstatus"> {{item.col4data}}</span></td>
+                <td class="sstatus">{{item.col5}} <span class="sstatus"> {{item.col5data}}</span></td>
+                <td class="sstatus">{{item.col6}} <span class="sstatus"> {{item.col6data}}</span></td>
+                <td class="sstatus">{{item.col7}} <span class="sstatus"> {{item.col7data}}</span></td>
+            		<td class="sstatus">{{item.col8}} <span class="sstatus"> {{item.col8data}}</span></td>
+                <td class="sstatus">{{item.col9}} <span class="sstatus"> {{item.col9data}}</span></td>
+        </tr>
+</table>
+<br/>
+   <table class='sstatus'>
+			<thead>
+				<tr>
+          <th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col0'; sortReverse = !sortReverse">Job name (Weekly)</a></th>
+					<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col1'; sortReverse = !sortReverse">System</a></th>
+					<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col0'; sortReverse = !sortReverse">Week {{data.headerw[0]}}</a></th>
+					<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col1'; sortReverse = !sortReverse">Week {{data.headerw[1]}}</a></th>
+					<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col2'; sortReverse = !sortReverse">Week {{data.headerw[2]}}</a></th>
+					<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col3'; sortReverse = !sortReverse">Week {{data.headerw[3]}}</a></th>
+					<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'col4'; sortReverse = !sortReverse">Week {{data.headerw[4]}}</a></th>
+				</tr>
+			</thead>
+    	<tr ng-repeat="item in data.bodyw | orderBy:sortType:sortReverse | filter:searchJob | filter:search.id">
+				<td class="sstatus"><a href="x_agsa_sapcockpit_dynamic_report_weekly_list.do?sysparm_query=name={{item.col0}}^system={{item.col1}}" target="_blank">{{item.col0}}</a> </td>
+				<td class="sstatus">{{item.col1}} <span class="sstatus"> {{item.col1data}}</span></td>
+				<td class="sstatus">{{item.col2}} <span class="sstatus"> {{item.col2data}}</span></td>
+				<td class="sstatus">{{item.col3}} <span class="sstatus"> {{item.col3data}}</span></td>
+				<td class="sstatus">{{item.col4}} <span class="sstatus"> {{item.col4data}}</span></td>
+		   	<td class="sstatus">{{item.col5}} <span class="sstatus"> {{item.col5data}}</span></td>
+ 		   	<td class="sstatus">{{item.col6}} <span class="sstatus"> {{item.col6data}}</span></td>
+		 </tr>
+  </table>
+]]></template>
+    </sp_widget>
+</record_update>

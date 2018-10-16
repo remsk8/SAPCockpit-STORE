@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>acknowledge_List</action_name>
+        <active>true</active>
+        <client>true</client>
+        <comments/>
+        <condition/>
+        <form_action>false</form_action>
+        <form_button>false</form_button>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_style>destructive</form_style>
+        <hint/>
+        <list_action>true</list_action>
+        <list_banner_button>true</list_banner_button>
+        <list_button>true</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>true</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <name>Acknowledge</name>
+        <onclick>acknowledgeAlm()</onclick>
+        <order>100</order>
+        <script><![CDATA[function acknowledgeAlm(){
+	var cis=g_list.getChecked().toString();
+	var ga = new GlideAjax("x_agsa_sapcockpit.ProMonitorAJX");         
+	ga.addParam("sysparm_name", "acknowledgeAlarms");
+	ga.addParam("sysparm_selected_ci",cis);
+	ga.getXMLAnswer(function(stateValue) {
+			g_list.refresh();    
+	});
+	
+//	g_list.refresh();    
+}]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-11-06 09:56:28</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>7f5875c5db56cb007bd0f13daf96190d</sys_id>
+        <sys_mod_count>55</sys_mod_count>
+        <sys_name>Acknowledge</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_ui_action_7f5875c5db56cb007bd0f13daf96190d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-28 13:51:25</sys_updated_on>
+        <table>x_agsa_sapcockpit_alarm</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>true</ui16_compatible>
+    </sys_ui_action>
+</record_update>

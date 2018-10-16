@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_rectangle_menu_item">
+    <sp_rectangle_menu_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <color>default</color>
+        <condition/>
+        <display_1/>
+        <display_2/>
+        <display_date/>
+        <filter/>
+        <glyph>book</glyph>
+        <hint/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <label>Dynamic Report</label>
+        <order>50</order>
+        <record_script/>
+        <sc_cat_item/>
+        <sc_category/>
+        <short_description/>
+        <sp_page display_value="dynamic_system_overview">8cff4c3fdbc78b407bd0f13daf961983</sp_page>
+        <sp_rectangle_menu display_value="SAPCockpit Menu">d65e167d4f86430033e71aabb110c725</sp_rectangle_menu>
+        <sp_rectangle_menu_item/>
+        <sys_class_name>sp_rectangle_menu_item</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-12-21 22:15:05</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>cf315cffdbc78b407bd0f13daf9619ef</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Dynamic Report</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_rectangle_menu_item_cf315cffdbc78b407bd0f13daf9619ef</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-12-26 10:18:30</sys_updated_on>
+        <table/>
+        <type>url</type>
+        <url>/sapcockpit?id=dynamic_system_overview</url>
+        <url_target/>
+    </sp_rectangle_menu_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=cf315cffdbc78b407bd0f13daf9619ef"/>
+</record_update>

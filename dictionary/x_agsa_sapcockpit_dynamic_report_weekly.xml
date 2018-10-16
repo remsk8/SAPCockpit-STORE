@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element extends="x_agsa_sapcockpit_dynamic_report" label="Dynamic Report Weekly" max_length="40" name="x_agsa_sapcockpit_dynamic_report_weekly" type="collection">
+        <element label="Week Number" max_length="40" name="week_number" type="integer"/>
+    </element>
+</database>

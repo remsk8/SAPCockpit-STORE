@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element audit="true" label="Alarm" max_length="40" name="x_agsa_sapcockpit_alarm" type="collection">
+        <element label="Acknowledge" max_length="40" name="acknowledge" type="boolean"/>
+        <element label="Client" max_length="10" name="client" type="string"/>
+        <element label="Company" max_length="40" name="company" type="string"/>
+        <element label="ConfigId" max_length="40" name="configid" type="string"/>
+        <element label="Connector" max_length="60" name="connector" type="string"/>
+        <element label="Count" max_length="40" name="count" type="integer"/>
+        <element label="CustomSource" max_length="40" name="customsource" type="string"/>
+        <element label="Description" max_length="200" name="description" type="string"/>
+        <element label="Host" max_length="100" name="host" type="string"/>
+        <element label="Id" max_length="255" name="id" type="string"/>
+        <element label="Instance" max_length="100" name="instance" type="string"/>
+        <element label="Item" max_length="100" name="item" type="string"/>
+        <element label="Locked Until" max_length="40" name="locked_until" type="glide_date_time"/>
+        <element label="Message" max_length="400" name="message" type="string"/>
+        <element label="Metric" max_length="100" name="metric" type="string"/>
+        <element display="true" label="Module" max_length="40" name="module" type="string"/>
+        <element label="Module_Sid" max_length="40" name="module_sid" type="string"/>
+        <element label="Raise Time" max_length="40" name="raise_time" type="glide_date_time"/>
+        <element label="Severity" max_length="40" name="severity" type="string"/>
+        <element label="Severity Code" max_length="40" name="severity_code" type="integer"/>
+        <element label="Sid" max_length="32" name="sid" type="string"/>
+        <element label="SubsystemID" max_length="100" name="subsystemid" type="string"/>
+        <element label="Target" max_length="100" name="target" type="string"/>
+        <element label="ToClear" max_length="40" name="toclear" type="boolean"/>
+        <element label="Type" max_length="40" name="type" type="string"/>
+        <element label="User" max_length="100" name="user" type="string"/>
+        <index name="index">
+            <element name="id"/>
+        </index>
+        <index name="index2">
+            <element name="sid"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>When an incident is created automatically or created with the "create incident" button in the Alarm form, the business service used is the following (enter business Service sysID)</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_agsa_sapcockpit.business_service</name>
+        <read_roles>x_agsa_sapcockpit.user</read_roles>
+        <suffix>business_service</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-08-27 13:37:36</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>293e647bdb84eb00446b105f6896190a</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_agsa_sapcockpit.business_service</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_properties_293e647bdb84eb00446b105f6896190a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-27 13:44:49</sys_updated_on>
+        <type>short_string</type>
+        <value/>
+        <write_roles>x_agsa_sapcockpit.user</write_roles>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=293e647bdb84eb00446b105f6896190a"/>
+</record_update>

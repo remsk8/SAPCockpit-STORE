@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance_table">
+    <sp_instance_table action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>info</color>
+        <css/>
+        <display_field/>
+        <field_list>number,business_service,incident_state,short_description</field_list>
+        <filter table="incident">active=true^business_service=dad1ca3bdb799f007bd0f13daf961975^ORDERBYDESCsys_created_on<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="false" field="business_service" goto="false" newquery="false" operator="=" or="false" value="dad1ca3bdb799f007bd0f13daf961975"/>
+            <item endquery="false" field="" goto="false" newquery="false" operator="ORDERBYDESC" or="false" value="sys_created_on"/>
+        </filter>
+        <glyph/>
+        <id/>
+        <maximum_entries>10</maximum_entries>
+        <order>1</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">f6f14e3bdb799f007bd0f13daf9619a6</sp_column>
+        <sp_page/>
+        <sp_widget display_value="Data Table from Instance Definition">38058ff1cb11020000f8d856634c9c8c</sp_widget>
+        <sys_class_name>sp_instance_table</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-05-07 23:19:59</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>3af14e3bdb799f007bd0f13daf9619a8</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>All alarms</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_instance_table_3af14e3bdb799f007bd0f13daf9619a8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-05-08 20:26:06</sys_updated_on>
+        <table>incident</table>
+        <title>All alarms</title>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_table>
+    <sys_translated_text action="delete_multiple" query="documentkey=3af14e3bdb799f007bd0f13daf9619a8"/>
+</record_update>
