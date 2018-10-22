@@ -4,7 +4,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>severity</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -19,7 +19,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sid</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -34,7 +34,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>message</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
@@ -49,7 +49,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>company</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
@@ -64,7 +64,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>description</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>4</position>
@@ -79,7 +79,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>count</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>5</position>
@@ -94,7 +94,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>id</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>6</position>
@@ -109,7 +109,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>host</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>7</position>
@@ -124,7 +124,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>raise_time</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>8</position>
@@ -139,7 +139,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_created_on</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>9</position>
@@ -154,7 +154,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sys_updated_on</element>
-            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">5d73b030db10af00f1bf001b8a961983</list_id>
+            <list_id display_value="x_agsa_sapcockpit_alarm" element="NULL" name="x_agsa_sapcockpit_alarm" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">e96ed073db84eb00446b105f68961955</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>10</position>
@@ -178,21 +178,21 @@
             <sum>false</sum>
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-08-27 12:26:10</sys_created_on>
+            <sys_created_on>2018-10-22 09:48:58</sys_created_on>
             <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_id>e96ed073db84eb00446b105f68961955</sys_id>
+            <sys_id>fc7350f14f5de3c033e71aabb110c735</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_name>x_agsa_sapcockpit_alarm</sys_name>
-            <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+            <sys_name/>
+            <sys_package/>
             <sys_policy/>
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
-            <sys_update_name>sys_ui_list_x_agsa_sapcockpit_alarm_null</sys_update_name>
+            <sys_update_name/>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-08-27 12:26:10</sys_updated_on>
-            <sys_user/>
+            <sys_updated_on>2018-10-22 09:48:58</sys_updated_on>
+            <sys_user display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</sys_user>
             <view display_value="Default view" name="NULL">Default view</view>
             <view_name/>
         </sys_ui_list>

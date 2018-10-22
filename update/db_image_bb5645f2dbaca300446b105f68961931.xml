@@ -27,9 +27,9 @@
     </db_image>
     <sys_attachment action="INSERT_OR_UPDATE">
         <average_image_color>#ffffff</average_image_color>
-        <chunk_size_bytes>734003</chunk_size_bytes>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
+        <encryption_context/>
         <file_name>image</file_name>
         <image_height>293</image_height>
         <image_width>1692</image_width>

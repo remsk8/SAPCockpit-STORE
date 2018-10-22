@@ -6,12 +6,13 @@
         <element label="Company" max_length="40" name="company" type="string"/>
         <element label="ConfigId" max_length="40" name="configid" type="string"/>
         <element label="Connector" max_length="60" name="connector" type="string"/>
-        <element label="Count" max_length="40" name="count" type="integer"/>
         <element label="CustomSource" max_length="40" name="customsource" type="string"/>
         <element label="Description" max_length="200" name="description" type="string"/>
         <element label="Host" max_length="100" name="host" type="string"/>
         <element label="Id" max_length="255" name="id" type="string"/>
+        <element label="Incident" max_length="32" name="incident" reference="incident" type="reference"/>
         <element label="Instance" max_length="100" name="instance" type="string"/>
+        <element label="Int Raise Time" max_length="30" name="int_raise_time" type="string"/>
         <element label="Item" max_length="100" name="item" type="string"/>
         <element label="Locked Until" max_length="40" name="locked_until" type="glide_date_time"/>
         <element label="Message" max_length="400" name="message" type="string"/>
@@ -31,6 +32,9 @@
             <element name="id"/>
         </index>
         <index name="index2">
+            <element name="incident"/>
+        </index>
+        <index name="index3">
             <element name="sid"/>
         </index>
     </element>

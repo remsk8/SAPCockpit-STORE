@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element extends="sys_import_set_row" label="WS Alarms" max_length="40" name="x_agsa_sapcockpit_ws_alarms" type="collection">
+    <element extends="sys_import_set_row" label="WS Alarms" max_length="40" name="x_agsa_sapcockpit_ws_alarms" sizeclass="11392" type="collection">
         <element attributes="import_attribute_name=client,edge_encryption_enabled=true" label="Client" max_length="100" name="client" type="string"/>
         <element attributes="import_attribute_name=company,edge_encryption_enabled=true" label="Company" max_length="100" name="company" type="string"/>
         <element attributes="import_attribute_name=configid,edge_encryption_enabled=true" label="ConfigID" max_length="100" name="configid" type="string"/>
@@ -14,6 +14,7 @@
         <element attributes="import_attribute_name=message,edge_encryption_enabled=true" label="Message" max_length="1000" name="message" type="string"/>
         <element attributes="import_attribute_name=metric,edge_encryption_enabled=true" label="Metric" max_length="100" name="metric" type="string"/>
         <element attributes="import_attribute_name=module,edge_encryption_enabled=true" label="Module" max_length="100" name="module" type="string"/>
+        <element attributes="import_attribute_name=raisetime,edge_encryption_enabled=true" label="RaiseTime" max_length="40" name="raisetime" type="string"/>
         <element attributes="import_attribute_name=severity,edge_encryption_enabled=true" label="Severity" max_length="100" name="severity" type="string"/>
         <element attributes="import_attribute_name=severity_code,edge_encryption_enabled=true" label="Severity Code" max_length="100" name="severity_code" type="string"/>
         <element attributes="import_attribute_name=sid,edge_encryption_enabled=true" label="Sid" max_length="100" name="sid" type="string"/>

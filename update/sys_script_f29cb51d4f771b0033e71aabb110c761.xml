@@ -32,26 +32,28 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 	var subject=current.sid+' '+current.company+' -'+current.message;
-	
-	if (CheckIncident(subject) == 'false') {
+	var incidentid=current.sid+current.company+current.id+current.int_raise_time;
+	if (CheckIncident(incidentid) === false) {
 		var gr=new GlideRecord('incident');
 		gr.initialize();
 		gr.business_service=gs.getProperty('x_agsa_sapcockpit.business_service'); 
 		gr.short_description=subject;
 		gr.caller_id=gs.getUserID();
-		gr.description='<b>'+current.severity+' alarm for '+current.company+' on '+current.sid+'</b>';
+		gr.description='<b>ID: '+incidentid+'</b>';
+		gr.description+='<b>'+current.severity+' alarm for '+current.company+' on '+current.sid+'</b>';
 		gr.description+='<br/>Raise Time: '+current.raise_time.getDisplayValue();
 		gr.description+='<br/>Module: '+current.module;
 		gr.description+='<br/>Host: '+current.host;
 		gr.description+='<br/>Sid: '+current.sid;
 		gr.description+='<br/>Message: '+current.message;
-		var value=gr.insert(); 
+		var value=gr.insert();
+		current.incident=value;
 	 }
 	
 	function CheckIncident(subject) {
 		var status=true;
-		var nscst = new GlideAggregate("x_agsa_sapcockpit_alarm");
-		nscst.addQuery('short_description',subject);
+		var nscst = new GlideAggregate("incident");
+		nscst.addQuery('description','CONTAINS',subject);
 		nscst.addQuery('active','true');
 		nscst.addAggregate('COUNT');
 		nscst.query();
@@ -69,7 +71,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>f29cb51d4f771b0033e71aabb110c761</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>Automatic Incident Creation</sys_name>
         <sys_overrides/>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
@@ -78,7 +80,7 @@
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sys_script_f29cb51d4f771b0033e71aabb110c761</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-09-18 12:25:52</sys_updated_on>
+        <sys_updated_on>2018-10-18 15:36:00</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

@@ -7,7 +7,6 @@
         <element display="true" label="Name" max_length="40" name="name" type="string"/>
         <element label="Standard Deviation" max_length="20" name="standard_deviation" type="decimal"/>
         <element label="System" max_length="10" name="system" type="string"/>
-        <element default="javascript:current.getTableName();" dynamic_default_value="b5cb83a85f220100a9ad2572f2b4773c" label="Class" max_length="80" name="sys_class_name" type="sys_class_name" use_dynamic_default="true"/>
         <element label="Type" max_length="20" name="type" type="string"/>
     </element>
 </database>
