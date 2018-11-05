@@ -54,7 +54,7 @@
 							obj.typelink="hanaview";
 						}	else { 
 							obj.type="NetWeaver";
-							obj.typelink="detailview";
+							obj.typelink="netweaverview";
 						}
 		}
 		
@@ -167,7 +167,7 @@
         <sys_created_on>2017-10-27 12:54:22</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>c2518b794f0a430033e71aabb110c789</sys_id>
-        <sys_mod_count>397</sys_mod_count>
+        <sys_mod_count>398</sys_mod_count>
         <sys_name>System Overview</sys_name>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
         <sys_policy/>
@@ -175,7 +175,7 @@
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sp_widget_c2518b794f0a430033e71aabb110c789</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-10-17 07:53:15</sys_updated_on>
+        <sys_updated_on>2018-10-26 15:23:49</sys_updated_on>
         <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
 <table class='sstatus' sytle='width:30%;'>
 	<thead>

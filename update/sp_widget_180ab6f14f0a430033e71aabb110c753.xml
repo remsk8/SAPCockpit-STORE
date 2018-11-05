@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-        <client_script><![CDATA[function() {
-  /* widget controller */
-  var c = this;
+        <client_script><![CDATA[function ($scope, $interval, spUtil) {
+	var c=this;
+	$interval (function(){
+		spUtil.update($scope);
+	}, c.options.widgetupdate);
 }]]></client_script>
         <controller_as>c</controller_as>
         <css/>
@@ -17,7 +19,7 @@
         <internal>false</internal>
         <link/>
         <name>GenerateReport</name>
-        <option_schema>[{"displayValue":"Report","name":"report","label":"Report","type":"reference","value":"sys_report","ed":{"reference":"sys_report"}},{"name":"height","label":"Height","type":"string"}]</option_schema>
+        <option_schema>[{"displayValue":"Report","name":"report","label":"Report","type":"reference","value":"sys_report","ed":{"reference":"sys_report"}},{"name":"height","label":"Height","type":"string"},{"name":"widgetupdate","default_value":"60000","label":"Widget Update Time in Milliseconds","type":"integer"}]</option_schema>
         <public>false</public>
         <roles>x_agsa_sapcockpit.user</roles>
         <script><![CDATA[(function() {
@@ -36,7 +38,7 @@
         <sys_created_on>2017-10-27 12:22:52</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>180ab6f14f0a430033e71aabb110c753</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>GenerateReport</sys_name>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
         <sys_policy/>
@@ -44,7 +46,7 @@
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sp_widget_180ab6f14f0a430033e71aabb110c753</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-27 12:18:58</sys_updated_on>
+        <sys_updated_on>2018-11-01 14:47:21</sys_updated_on>
         <template><![CDATA[<div>
   <iframe ng-src="{{data.report}}" scrolling="no" frameborder="0" height="{{data.height}}" width="100%"></iframe>
 </div>]]></template>

@@ -18,7 +18,6 @@
         <script><![CDATA[(function runAction(/*GlideRecord*/ current, /*GlideRecord*/ event, /*EmailWrapper*/ email, /*ScopedEmailLogger*/ logger, /*EmailClassifier*/ classifier) {
 	current.system_sid = email.subject.split(' - ')[1].replace(' ','');
 	current.insert();
-	
 })(current, event, email, logger, classifier);]]></script>
         <stop_processing>true</stop_processing>
         <sys_class_name>sysevent_in_email_action</sys_class_name>
@@ -28,7 +27,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ae0ad43bdb0b8b407bd0f13daf961935</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>PROMonitor Reports</sys_name>
         <sys_overrides/>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
@@ -37,7 +36,7 @@
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sysevent_in_email_action_ae0ad43bdb0b8b407bd0f13daf961935</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-12-22 13:50:09</sys_updated_on>
+        <sys_updated_on>2018-10-31 17:26:44</sys_updated_on>
         <table>x_agsa_sapcockpit_report</table>
         <template/>
         <type>new</type>

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_section caption="" section_id="8c991000dbada700550b4a92ba9619fa" sys_domain="global" table="x_agsa_sapcockpit_ws_alarms" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>client</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>cc991000dbada700550b4a92ba9619ff</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>company</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c4995000dbada700550b4a92ba961900</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>configid</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>48995000dbada700550b4a92ba961900</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>connectorid</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c8995000dbada700550b4a92ba961900</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>customsource</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>4c995000dbada700550b4a92ba961900</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>cc995000dbada700550b4a92ba961900</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>host</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>40995000dbada700550b4a92ba961901</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>id</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c0995000dbada700550b4a92ba961901</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>instance</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>44995000dbada700550b4a92ba961901</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>item</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c4995000dbada700550b4a92ba961901</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>message</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>48995000dbada700550b4a92ba961901</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>metric</element>
+            <position>11</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c8995000dbada700550b4a92ba961901</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>module</element>
+            <position>12</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>4c995000dbada700550b4a92ba961901</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>severity</element>
+            <position>13</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>cc995000dbada700550b4a92ba961901</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>severity_code</element>
+            <position>14</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>40995000dbada700550b4a92ba961902</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>subsystemid</element>
+            <position>15</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c0995000dbada700550b4a92ba961902</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>user</element>
+            <position>16</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>44995000dbada700550b4a92ba961902</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sid</element>
+            <position>17</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c4995000dbada700550b4a92ba961902</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>target</element>
+            <position>18</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>48995000dbada700550b4a92ba961902</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>toclear</element>
+            <position>19</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c8995000dbada700550b4a92ba961902</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>20</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>4c995000dbada700550b4a92ba961902</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_type</element>
+            <position>21</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>cc995000dbada700550b4a92ba961902</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>22</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>40995000dbada700550b4a92ba961903</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>raisetime</element>
+            <position>23</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>c0995000dbada700550b4a92ba961903</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>24</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_id>44995000dbada700550b4a92ba961903</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_agsa_sapcockpit_ws_alarms" sys_domain="global" view="Default view">8c991000dbada700550b4a92ba9619fa</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_agsa_sapcockpit_ws_alarms</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-10-29 10:02:01</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>8c991000dbada700550b4a92ba9619fa</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_agsa_sapcockpit_ws_alarms</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+            <sys_update_name>sys_ui_section_8c991000dbada700550b4a92ba9619fa</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-10-29 10:02:01</sys_updated_on>
+            <sys_user/>
+            <title>true</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

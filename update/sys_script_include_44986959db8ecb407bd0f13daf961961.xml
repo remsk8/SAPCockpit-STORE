@@ -86,6 +86,8 @@ ProMonitorLib.prototype = {
 		var getStatus=new GlideAggregate('x_agsa_sapcockpit_last_metric');
 		getStatus.addQuery('name',metric);
 		getStatus.addQuery('value',false);
+		if (target != 'ALL') 
+			getStatus.addQuery('target',target);
 		getStatus.addQuery('sid',sid);
 		getStatus.addAggregate('COUNT');
 		getStatus.query();
@@ -94,11 +96,22 @@ ProMonitorLib.prototype = {
 				obj.status='false';
 			} else {
 				obj.status='true';
+				var count = new GlideAggregate('x_agsa_sapcockpit_last_metric');
+				count.addQuery('name',metric);
+				if (target != 'ALL') 
+					count.addQuery('target',target);
+				count.addQuery('sid',sid);
+				count.addAggregate('COUNT');
+				count.query();
+				if(count.next()) {
+					if (count.getAggregate('COUNT') == '0') 
+						obj.status='';
+				} 
 			}
 		}
 		obj.unit=unit;
 		obj.target=target;
-		obj.url='/nav_to.do?uri=x_agsa_sapcockpit_last_metric_list.do?sysparm_query=sid='+sid+'^name='+metric;
+		obj.url='/x_agsa_sapcockpit_last_metric_list.do?sysparm_query=sid='+sid+'^name='+metric;
 		return obj;
 	},
 	
@@ -136,6 +149,24 @@ ProMonitorLib.prototype = {
 		return count.getAggregate('COUNT');
 	},
 	
+	getTotalAlarmCount: function(sid) {
+		var count = new GlideAggregate('x_agsa_sapcockpit_alarm');
+		count.addQuery('sid',sid);
+		count.addQuery('acknowledge','false');
+		count.addAggregate('COUNT');
+		count.query();
+		count.next();
+		return count.getAggregate('COUNT');	
+	},
+	
+	SplitTime: function(numberOfHours){
+		var Days=Math.floor(numberOfHours/24);
+		var Remainder=numberOfHours % 24;
+		var Hours=Math.floor(Remainder);
+		var Minutes=Math.floor(60*(Remainder-Hours));
+		return({"d":Days,"h":Hours,"m":Minutes});
+	},
+	
     type: 'ProMonitorLib'
 };
 
@@ -145,7 +176,7 @@ ProMonitorLib.prototype = {
         <sys_created_on>2017-10-25 17:09:34</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>44986959db8ecb407bd0f13daf961961</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>ProMonitorLib</sys_name>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
         <sys_policy>protected</sys_policy>
@@ -153,6 +184,6 @@ ProMonitorLib.prototype = {
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sys_script_include_44986959db8ecb407bd0f13daf961961</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-30 13:04:33</sys_updated_on>
+        <sys_updated_on>2018-10-31 13:53:44</sys_updated_on>
     </sys_script_include>
 </record_update>

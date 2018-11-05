@@ -8,7 +8,108 @@
 	}, c.options.widgetupdate);
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>.box {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: #3a444a;
+}
+
+.backupText {
+  color: #3a444a;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+#mtable {
+    display: table;   
+}
+
+div.row &gt; button {
+  float:left;
+}
+
+.backupText {
+  color: #3a444a;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.mtable div.row {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.box {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: #3a444a;
+}
+
+.box2 {
+  text-transform: uppercase;
+  width:92%;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+button {
+  background: #3a444a;
+  color: white;
+  width: 150px;
+  height: 50px;
+  margin: 5px;
+  box-shadow: 0 6px 6px -3px #242f36;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  border:none;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background: #b2c2cf;
+  color: white;
+}
+
+.row {
+  display:table-row;
+}
+
+.cell {
+  width:25%;
+}
+
+.critical {  
+  background-color:#c71f3b!important;
+}
+
+.major {
+  background-color:#6b2cec!important;
+}
+
+.minor {
+  background-color:#ff8700!important;
+}
+
+.warning {
+  background-color:#ecd82c!important;
+}
+
+.informational {
+  background-color:#3bb3c9!important;
+}
+
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -23,13 +124,36 @@
         <public>false</public>
         <roles>x_agsa_sapcockpit.user</roles>
         <script><![CDATA[(function() {
+	gs.include('ProMonitorLib');
+  var promon=new ProMonitorLib();
 	data.list=[];
 	data.list2=[];
-	//data.hanadb=gs.getProperty("x_agsa_sapcockpit.HANA.DB").split(',');
+	data.config=[
+		{"name":"SYSTEM","modules":"SAP_SYSTEM"},
+		{"name":"SERVICES","modules":"HANA_SERVICES"},
+		{"name":"CPU","modules":"HANA_CPU"},
+		{"name":"DISK","modules":"HANA_DISK"},
+		{"name":"MEMORY","modules":"HANA_MEMORY"},
+		{"name":"MERGE STATISTICS","modules":"HANA_MERGE_STATISTICS"},
+		{"name":"THREADS","modules":"HANA_THREADS"},
+		{"name":"CONNECTIONS","modules":"HANA_CONNECTIONS"},
+		{"name":"TRANSACTIONS","modules":"HANA_TRANSACTIONS"},
+		{"name":"LOCKS","modules":"HANA_LOCKS"},
+		{"name":"WORKLOAD","modules":"HANA_WORKLOAD"},
+		{"name":"TABLES","modules":"HANA_TABLES"},
+		{"name":"ALERTS","modules":"HANA_ALERTS"},
+		{"name":"BACKUPS","modules":"HANA_BACKUPS,SAP_DB_HANA"},
+		{"name":"REPLICATION","modules":"HANA_REPLICATION"},
+		{"name":"NODES","modules":"HANA_NODES"}
+	];
 	refresh_threshold=options.alerttime;
-	system=$sp.getParameter('system');
-	//system='HA5';
+	if ($sp.getParameter('system') == undefined) {
+		system='';
+	} else {
+		system=$sp.getParameter('system');
+	}
 	data.system=system;
+	data.count=promon.getTotalAlarmCount(system);
 	// Get node list, build first Table
 	node=getNode('HANA_NODE_AVAILABILITY');
 
@@ -64,6 +188,43 @@
 		obj.scpu= getAgg(node[i],'DB_CPU_UTILIZATION_PER_SERVICE');
 		obj.smem= parseInt(getAgg(node[i],'MEMORY_PERCENTAGEUSED_PER_SERVICE'));
 		data.list2.push(obj);
+	}
+	
+	//
+	obje={};
+	data.list3=[];
+	data.count=promon.getTotalAlarmCount(system);
+	for (var j=0;j<data.config.length;j++) {
+		obje.name=data.config[j].name;
+		obje.sid=system;
+		obje.color=getHighestLevel(system,data.config[j].modules);
+		mod="module="+data.config[j].modules;
+		if (data.config[j].modules.split(',').length > 1)
+			mod=mod.replace(/,/g,'^ORmodule=');
+		obje.module=mod;
+		data.list3.push(obje);
+		obje={}
+	}
+	/*
+	//GETdb last backup 
+	var getDBbackupAge=new GlideRecordSecure("x_agsa_sapcockpit_last_metric");
+	getDBbackupAge.addQuery("sid",system);
+	getDBbackupAge.addQuery("name","DATABASE_BACKUP_AGE");
+	getDBbackupAge.query();
+	while (getDBbackupAge.next()) {
+		data.backupage=promon.SplitTime(getDBbackupAge.data/60);
+	}*/
+	// Function
+	function getHighestLevel(system,mod) {
+			var getSev = new GlideRecordSecure("x_agsa_sapcockpit_alarm");
+			getSev.addQuery('sid',system);
+			getSev.addQuery('module','IN',mod);
+			getSev.addQuery('acknowledge',false);
+			getSev.orderByDesc('severity_code');
+			getSev.query();
+			if (getSev.next()) 
+				return getSev.severity.toLowerCase();
+			return 'ok';
 	}
 	
 	function countActive(state,metric,target) {
@@ -123,19 +284,6 @@
 		}
 		return obj;	
 	}
-	
-	function getLastBck(target,metric) {
-		var delay='-1 minutes';
-		var lastUpd = new GlideRecordSecure("x_agsa_sapcockpit_last_metric");
-		lastUpd.addQuery('sid',system);
-		lastUpd.addQuery('metric',metric);
-		lastUpd.addQuery('target',target);
-		lastUpd.query();
-		if (lastUpd.next()) {
-			delay=lastUpd.value;
-		}
-		return delay;
-	}
 })();
 ]]></script>
         <servicenow>false</servicenow>
@@ -144,7 +292,7 @@
         <sys_created_on>2018-04-03 12:45:13</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>01aae838db9553407bd0f13daf96198b</sys_id>
-        <sys_mod_count>203</sys_mod_count>
+        <sys_mod_count>262</sys_mod_count>
         <sys_name>Hana View</sys_name>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
         <sys_policy/>
@@ -152,20 +300,29 @@
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sp_widget_01aae838db9553407bd0f13daf96198b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-08-30 13:47:42</sys_updated_on>
+        <sys_updated_on>2018-11-02 16:10:02</sys_updated_on>
         <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
-<h1> {{data.system}} </h1>
+<br/>
+<div class="mtable">
+  <div class="box">HANA DB {{data.system}} - Total Active Alarms : {{data.count}}</div>
+  <div class="row">
+      <a ng-repeat="item in data.list3" ng-href="/x_agsa_sapcockpit_alarm_list.do?sysparm_query=acknowledge!%3Dtrue%5Esid={{item.sid}}%5E{{item.module}}" target="_blank">
+        <button ng-class="{'{{item.color}}':item.color}">{{item.name}}</button>
+      </a>
+      <div id="space"/>
+  </div>
+<br>
+</div>
 <table class='sstatus' sytle='width:30%;'>
 	<thead>
 		<tr  ng-init="sortType='name';sortReverse=false">
       <th class="sstatus" ng-click="sortType = 'name'; sortReverse = !sortReverse"><a href="javascript:void(0)">Node Name</a></th>
 			<th class="sstatus" ng-click="sortType = 'status'; sortReverse = !sortReverse"><a href="javascript:void(0)">Status</a></th>
  			<th class="sstatus" ng-click="sortType = 'cpu'; sortReverse = !sortReverse"><a href="javascript:void(0)">CPU</a></th>
- 			<th class="sstatus" ng-click="sortType = 'mem'; sortReverse = !sortReverse"><a href="javascript:void(0)">RMem Total Used</a></th>      
+ 			<th class="sstatus" ng-click="sortType = 'mem'; sortReverse = !sortReverse"><a href="javascript:void(0)">Resident Memory Used</a></th>      
  			<th class="sstatus" ng-click="sortType = 'bck'; sortReverse = !sortReverse"><a href="javascript:void(0)">Dsk Bck</a></th>      
  			<th class="sstatus" ng-click="sortType = 'data'; sortReverse = !sortReverse"><a href="javascript:void(0)">Dsk Data</a></th>      
  			<th class="sstatus" ng-click="sortType = 'log'; sortReverse = !sortReverse"><a href="javascript:void(0)">Dsk Log</a></th>      
-      <!--<th class="sstatus" ng-click="sortType = 'conn'; sortReverse = !sortReverse"><a href="javascript:void(0)">Connection</a></th>      -->
 		</tr>
 	</thead>  
       <tr ng-repeat="item in data.list | orderBy:sortType:sortReverse">
@@ -178,8 +335,7 @@
           <td class="sstatus">{{item.bck}} %</td>
           <td class="sstatus">{{item.data}} %</td>
           <td class="sstatus">{{item.log}} %</td>
-        <!--  <td class="sstatus">{{item.conn}}</td>-->
-       </tr>
+      </tr>
 </table>
 <br>
 <table class='sstatus' sytle='width:30%;'>
@@ -202,8 +358,6 @@
           <td class="sstatus">{{item.smem}} %</td>
        </tr>
 </table>
-<br>
-<br>
 <br>
 ]]></template>
     </sp_widget>

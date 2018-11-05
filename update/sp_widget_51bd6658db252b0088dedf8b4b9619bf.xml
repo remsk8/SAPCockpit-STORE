@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function ($scope, $interval, spUtil) {
+	var c=this;
+	$interval (function(){
+		spUtil.update($scope);
+	}, c.options.widgetupdate);
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>dbinfo</id>
+        <internal>false</internal>
+        <link/>
+        <name>DBinfo</name>
+        <option_schema>[{"name":"widgetupdate","default_value":"60000","label":"Widget Update Time in Milliseconds","type":"integer"}]</option_schema>
+        <public>false</public>
+        <roles>x_agsa_sapcockpit.user</roles>
+        <script><![CDATA[(function() {
+  gs.include('ProMonitorLib');
+  var promon=new ProMonitorLib();
+	data.list=[];
+	
+	if ($sp.getParameter('system') == undefined) {
+		system='';
+	} else {
+		system=$sp.getParameter('system');
+	}
+	obj={};
+	obj.unit="DATA percentage USED"; 
+	obj.target=system.toString();
+	myrobj=getdbInfo(system,'DATABASE_DATA_PERCENTAGE_USED_SPACE');
+	obj.value=myrobj.value+' %';
+	obj.url="/x_agsa_sapcockpit_last_metric.do?sys_id="+myrobj.id;
+	data.list.push(obj);
+	obj={};
+	myrobj={};
+	obj.unit="LOG percentage USED"; 
+	obj.target=system.toString();
+	myrobj=getdbInfo(system,'DATABASE_LOG_PERCENTAGE_USED_SPACE');
+	obj.value=myrobj.value+' %';
+	obj.url="/x_agsa_sapcockpit_last_metric.do?sys_id="+myrobj.id;
+	data.list.push(obj);
+
+	//GETdb last backup
+	var count = new GlideAggregate('x_agsa_sapcockpit_last_metric');
+	count.addQuery("sid",system);
+	count.addQuery("name","DATABASE_BACKUP_AGE");
+	count.addAggregate('COUNT');
+	count.query();
+	if (count.next()) {
+		 if (count.getAggregate('COUNT') == 0) {
+				obj={};
+				obj.unit="LAST DB BACKUP"; 
+				obj.target='NO DATA';
+				obj.value='NO DATA';
+				data.list.push(obj);
+		} else {
+				var getDBbackupAge=new GlideRecordSecure("x_agsa_sapcockpit_last_metric");
+				getDBbackupAge.addQuery("sid",system);
+				getDBbackupAge.addQuery("name","DATABASE_BACKUP_AGE");
+				getDBbackupAge.query();
+				while (getDBbackupAge.next()) {
+					obj={};
+					obj.unit="LAST DB BACKUP"; 
+					obj.target=getDBbackupAge.target.toString();
+					backupage=promon.SplitTime(getDBbackupAge.data/60);
+					obj.value=backupage.d+' Days '+backupage.h+' hours '+backupage.m+' min';
+					obj.url='/x_agsa_sapcockpit_last_metric.do?sys_id='+getDBbackupAge.sys_id;
+					data.list.push(obj);
+				} 
+		}
+	}
+	
+	function getdbInfo(system,metric) {
+		obje={};
+		var getinfo=new GlideRecordSecure('x_agsa_sapcockpit_last_metric');
+		getinfo.addQuery('sid',system);
+		getinfo.addQuery('name',metric);
+		getinfo.query();
+		while (getinfo.next()) {
+			obje.value=getinfo.value.toString();
+			obje.id=getinfo.sys_id;
+			return obje;
+		}
+		obje.value="NO DATA";
+		obje.id="";
+		return obje;
+	}
+
+})();
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-10-30 15:27:45</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>51bd6658db252b0088dedf8b4b9619bf</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>DBinfo</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sp_widget_51bd6658db252b0088dedf8b4b9619bf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-11-02 15:06:17</sys_updated_on>
+        <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
+<table class='sstatus' sytle='width:30%;'>
+	<thead>
+		<tr>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Unit'; sortReverse = !sortReverse">DataBase Information</a></th>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Target'; sortReverse = !sortReverse">Target</a></th>
+ 			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Value'; sortReverse = !sortReverse">Value</a></th>
+		</tr>
+	</thead>
+	<tr ng-repeat="item in data.list | orderBy:sortType:sortReverse | filter:searchAlarm">
+		<td class="sstatus"><a href="{{item.url}}" target="_blank">{{item.unit}}</a> </td>
+ 		<td class="sstatus">{{item.target}}</td>
+    <td class="sstatus" ng-if='item.value != "NO DATA"' >{{item.value}}</td>
+ 		<td class="sstatus" ng-if='item.value == "NO DATA"' style='background-color:#c71f3b;text-align:center;'>NO DATA</td>
+  </tr>
+</table>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-        <client_script><![CDATA[function() {
-  /* widget controller */
-  var c = this;
+        <client_script><![CDATA[function ($scope, $interval, spUtil) {
+	var c=this;
+	$interval (function(){
+		spUtil.update($scope);
+	}, c.options.widgetupdate);
 }]]></client_script>
         <controller_as>c</controller_as>
         <css/>
@@ -17,45 +19,52 @@
         <internal>false</internal>
         <link/>
         <name>JAVAStatus</name>
-        <option_schema/>
+        <option_schema>[{"name":"widgetupdate","default_value":"60000","label":"Widget Update Time in Milliseconds","type":"integer"}]&#13;
+</option_schema>
         <public>false</public>
         <roles>x_agsa_sapcockpit.user</roles>
         <script><![CDATA[(function() {
-  gs.include('ProMonitorLib');
-  var promon=new ProMonitorLib();
-
 	obj={};
 	data.list=[];
-	alamCL=[];
-	alamRS='';
 	system=$sp.getParameter('system');
-	// First Get Alarm info
-	
-	var value=100-(parseInt(promon.getCount(1,system))*100/parseInt(promon.getCount(0,system))).toFixed(0);
-	value=value.toString();
-	obj.unit='Todays Alarm (yesterday)';
-	if (value.charAt(0) != "-") {
-		obj.target=promon.getCount(0,system)+' (+' +value+'%)';
-	} else {
-		obj.target=promon.getCount(0,system)+' (' +value+'%)';
-	}
-	obj.status="";
-	data.list.push(obj);
-	data.system=system;
-	obj={};		
-	
-	data.list.push(promon.returnInfo('System Availability','ALL','SYSTEM_AVAILABILITY',system));
-	data.list.push(promon.returnInfo('Instance Availability Status','ALL','INSTANCE_AVAILABILITY',system));
-	data.list.push(promon.returnInfo('JOBS Global Status','ALL','SAPJOBS_STATUS',system));
+	javainstance=getJavaInstances(system);
+	if (javainstance.length == 0)
+		data.displayme='false';
 
-})();]]></script>
+	for (var j=0;j<javainstance.length;j++) {
+		obj={};
+		obj.unit=javainstance[j].unit;
+		obj.target=javainstance[j].target;
+		obj.status=javainstance[j].status;
+		data.list.push(obj);
+	}	
+
+	function getJavaInstances(system) {
+		result=[];
+		var getInstance=new GlideRecordSecure('x_agsa_sapcockpit_last_metric');
+		getInstance.addQuery('sid',system);
+		getInstance.addQuery('name','JAVA_PROCESSES_STATUS');
+		getInstance.query();
+		while (getInstance.next()) {
+			var obj={};
+			obj.unit=getInstance.target.toString().toUpperCase();
+			obj.target=getInstance.metric.toString();
+			obj.status=getInstance.value.toString();
+			result.push(obj);
+		}
+		return result;
+	}
+	
+})();
+
+]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-10-19 14:27:07</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>8a56797c4f9923c033e71aabb110c749</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_name>JAVAStatus</sys_name>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
         <sys_policy/>
@@ -63,14 +72,13 @@
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sp_widget_8a56797c4f9923c033e71aabb110c749</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-10-19 14:51:35</sys_updated_on>
-        <template><![CDATA[<br>
+        <sys_updated_on>2018-11-01 14:35:37</sys_updated_on>
+        <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
 <br>
-<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
-<table class='sstatus' sytle='width:30%;'>
+<table class='sstatus' sytle='width:30%;' ng-if="data.displayme != 'false'">
 	<thead>
 		<tr>
-			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Unit'; sortReverse = !sortReverse">ABAP INSATNCE STATUS</a></th>
+			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Unit'; sortReverse = !sortReverse">JAVA INSTANCE</a></th>
 			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Target'; sortReverse = !sortReverse">Target</a></th>
  			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'Value'; sortReverse = !sortReverse">Status</a></th>
 		</tr>
@@ -80,12 +88,9 @@
  		<td class="sstatus">{{item.target}}</td>
 		<td class="sstatus" ng-if='item.status == "true"' style='background-color:#3bc999;text-align:center;'>OK</td>
 		<td class="sstatus" ng-if='item.status == "false"' style='background-color:#c71f3b;text-align:center;'>FAILED</td>
- 		<td class="sstatus" ng-if='item.status == ""' style='background-color:#3bc999;text-align:center;'></td>
+ 		<td class="sstatus" ng-if='item.status == ""' style='background-color:#c71f3b;text-align:center;'>NO DATA</td>
   </tr>
 </table>
-<!--
-<table class='sstatus' sytle='width:30%;'>
-			<th class="sstatus"><a ng-href="sapcockpit?id=jobreport&system={{data.system}}" target="_self">JOB Dynamic Report</a></th>
-</table>-->]]></template>
+]]></template>
     </sp_widget>
 </record_update>
