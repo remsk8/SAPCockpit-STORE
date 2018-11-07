@@ -134,7 +134,7 @@ button:hover {
 		{"name":"QUEUES/WP","modules":"SAP_ABAP_DISPATCHER,WEB_DISPATCHER,SAP_ABAP_WORKPROCESSES,SAP_EXCLUSIVE_LOCKS"},
 		{"name":"Buffer","modules":"SAP_BUFFERS"},
 		{"name":"Change","modules":"SAP_CHANGE_SETTINGS"},
-		{"name":"Transactions","modules":"SAP_TRANSACTIONS,APPLICATION_LOGS"}
+		{"name":"Transactions","modules":"SAP_TRANSACTIONS"}
 	];
 	
 	obje={};
@@ -185,7 +185,7 @@ button:hover {
         <sys_created_on>2018-10-12 09:32:21</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>3bbfa86edb45ab807bd0f13daf961979</sys_id>
-        <sys_mod_count>350</sys_mod_count>
+        <sys_mod_count>351</sys_mod_count>
         <sys_name>SystemModulesAlerts</sys_name>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
         <sys_policy/>
@@ -193,7 +193,7 @@ button:hover {
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sp_widget_3bbfa86edb45ab807bd0f13daf961979</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-11-02 10:28:20</sys_updated_on>
+        <sys_updated_on>2018-11-06 16:55:39</sys_updated_on>
         <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
 <br>
 <div class="mtable">
