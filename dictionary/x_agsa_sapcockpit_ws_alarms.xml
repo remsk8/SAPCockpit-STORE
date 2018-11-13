@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <element extends="sys_import_set_row" label="WS Alarms" max_length="40" name="x_agsa_sapcockpit_ws_alarms" sizeclass="11392" type="collection">
+        <element attributes="import_attribute_name=alarmtime,edge_encryption_enabled=true" label="alarmTime" max_length="40" name="alarmtime" type="string"/>
         <element attributes="import_attribute_name=client,edge_encryption_enabled=true" label="Client" max_length="100" name="client" type="string"/>
         <element attributes="import_attribute_name=company,edge_encryption_enabled=true" label="Company" max_length="100" name="company" type="string"/>
         <element attributes="import_attribute_name=configid,edge_encryption_enabled=true" label="ConfigID" max_length="100" name="configid" type="string"/>
@@ -21,7 +22,7 @@
         <element attributes="import_attribute_name=subsystemid,edge_encryption_enabled=true" label="SubsystemID" max_length="100" name="subsystemid" type="string"/>
         <element attributes="import_attribute_name=target,edge_encryption_enabled=true" label="Target" max_length="100" name="target" type="string"/>
         <element attributes="import_attribute_name=toclear,edge_encryption_enabled=true" label="ToClear" max_length="100" name="toclear" type="string"/>
+        <element attributes="import_attribute_name=type,edge_encryption_enabled=true" label="Type" max_length="40" name="type" type="string"/>
         <element attributes="import_attribute_name=user,edge_encryption_enabled=true" label="User" max_length="100" name="user" type="string"/>
-        <element attributes="import_attribute_name=u_type,edge_encryption_enabled=true" label="Type" max_length="40" name="u_type" type="string"/>
     </element>
 </database>
