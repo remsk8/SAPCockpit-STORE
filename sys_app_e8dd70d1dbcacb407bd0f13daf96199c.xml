@@ -16,16 +16,16 @@
         <scoped_administration>false</scoped_administration>
         <short_description>Monitor your SAP systems</short_description>
         <source>x_agsa_sapcockpit</source>
-        <store_correlation_id>APP0010470</store_correlation_id>
+        <store_correlation_id>APP0010486</store_correlation_id>
         <store_url>https://tpp.servicenow.com/sn_appstore_s</store_url>
         <sys_class_name>sys_app</sys_class_name>
         <sys_code/>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-10-25 14:01:56</sys_created_on>
         <sys_id>e8dd70d1dbcacb407bd0f13daf96199c</sys_id>
-        <sys_mod_count>68</sys_mod_count>
+        <sys_mod_count>69</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-11-13 11:12:05</sys_updated_on>
+        <sys_updated_on>2018-11-13 11:12:40</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <user_role display_value="x_agsa_sapcockpit.user" name="x_agsa_sapcockpit.user">8d6e3895db0ecb407bd0f13daf9619a9</user_role>
