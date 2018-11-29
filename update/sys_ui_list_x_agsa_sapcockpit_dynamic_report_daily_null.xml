@@ -4,122 +4,122 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1527f1f4dbb92b00550b4a92ba961913</list_id>
+            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">0bd3bf17dbb9a30088dedf8b4b961909</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-11-13 11:02:02</sys_created_on>
-            <sys_id>9927f1f4dbb92b00550b4a92ba961913</sys_id>
+            <sys_created_on>2018-11-21 14:31:44</sys_created_on>
+            <sys_id>4fd3bf17dbb9a30088dedf8b4b96190a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-11-13 11:02:02</sys_updated_on>
+            <sys_updated_on>2018-11-21 14:31:44</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>average</element>
-            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1527f1f4dbb92b00550b4a92ba961913</list_id>
+            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">0bd3bf17dbb9a30088dedf8b4b961909</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-11-13 11:02:02</sys_created_on>
-            <sys_id>1d27f1f4dbb92b00550b4a92ba961913</sys_id>
+            <sys_created_on>2018-11-21 14:31:44</sys_created_on>
+            <sys_id>c3d3bf17dbb9a30088dedf8b4b96190b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-11-13 11:02:02</sys_updated_on>
+            <sys_updated_on>2018-11-21 14:31:44</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>count</element>
-            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1527f1f4dbb92b00550b4a92ba961913</list_id>
+            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">0bd3bf17dbb9a30088dedf8b4b961909</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-11-13 11:02:02</sys_created_on>
-            <sys_id>9d27f1f4dbb92b00550b4a92ba961913</sys_id>
+            <sys_created_on>2018-11-21 14:31:44</sys_created_on>
+            <sys_id>47d3bf17dbb9a30088dedf8b4b96190b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-11-13 11:02:02</sys_updated_on>
+            <sys_updated_on>2018-11-21 14:31:44</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>generation_date</element>
-            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1527f1f4dbb92b00550b4a92ba961913</list_id>
+            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">0bd3bf17dbb9a30088dedf8b4b961909</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-11-13 11:02:02</sys_created_on>
-            <sys_id>1127f1f4dbb92b00550b4a92ba961914</sys_id>
+            <sys_created_on>2018-11-21 14:31:44</sys_created_on>
+            <sys_id>c7d3bf17dbb9a30088dedf8b4b96190b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-11-13 11:02:02</sys_updated_on>
+            <sys_updated_on>2018-11-21 14:31:44</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>list_metric</element>
-            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1527f1f4dbb92b00550b4a92ba961913</list_id>
+            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">0bd3bf17dbb9a30088dedf8b4b961909</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>4</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-11-13 11:02:02</sys_created_on>
-            <sys_id>9127f1f4dbb92b00550b4a92ba961914</sys_id>
+            <sys_created_on>2018-11-21 14:31:44</sys_created_on>
+            <sys_id>4bd3bf17dbb9a30088dedf8b4b96190b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-11-13 11:02:02</sys_updated_on>
+            <sys_updated_on>2018-11-21 14:31:44</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>standard_deviation</element>
-            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1527f1f4dbb92b00550b4a92ba961913</list_id>
+            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">0bd3bf17dbb9a30088dedf8b4b961909</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>5</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-11-13 11:02:02</sys_created_on>
-            <sys_id>1527f1f4dbb92b00550b4a92ba961914</sys_id>
+            <sys_created_on>2018-11-21 14:31:44</sys_created_on>
+            <sys_id>cbd3bf17dbb9a30088dedf8b4b96190b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-11-13 11:02:02</sys_updated_on>
+            <sys_updated_on>2018-11-21 14:31:44</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>system</element>
-            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1527f1f4dbb92b00550b4a92ba961913</list_id>
+            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">0bd3bf17dbb9a30088dedf8b4b961909</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>6</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-11-13 11:02:02</sys_created_on>
-            <sys_id>9527f1f4dbb92b00550b4a92ba961914</sys_id>
+            <sys_created_on>2018-11-21 14:31:44</sys_created_on>
+            <sys_id>4fd3bf17dbb9a30088dedf8b4b96190b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-11-13 11:02:02</sys_updated_on>
+            <sys_updated_on>2018-11-21 14:31:44</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>type</element>
-            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">1527f1f4dbb92b00550b4a92ba961913</list_id>
+            <list_id display_value="x_agsa_sapcockpit_dynamic_report_daily" element="NULL" name="x_agsa_sapcockpit_dynamic_report_daily" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">0bd3bf17dbb9a30088dedf8b4b961909</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>7</position>
             <sum>false</sum>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2018-11-13 11:02:02</sys_created_on>
-            <sys_id>1927f1f4dbb92b00550b4a92ba961914</sys_id>
+            <sys_created_on>2018-11-21 14:31:44</sys_created_on>
+            <sys_id>cfd3bf17dbb9a30088dedf8b4b96190b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2018-11-13 11:02:02</sys_updated_on>
+            <sys_updated_on>2018-11-21 14:31:44</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
