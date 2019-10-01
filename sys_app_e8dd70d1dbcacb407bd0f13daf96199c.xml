@@ -24,14 +24,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-10-25 14:01:56</sys_created_on>
         <sys_id>e8dd70d1dbcacb407bd0f13daf96199c</sys_id>
-        <sys_mod_count>71</sys_mod_count>
+        <sys_mod_count>72</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-11-29 14:37:56</sys_updated_on>
+        <sys_updated_on>2019-10-01 12:24:00</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <user_role display_value="x_agsa_sapcockpit.user" name="x_agsa_sapcockpit.user">8d6e3895db0ecb407bd0f13daf9619a9</user_role>
         <vendor/>
         <vendor_prefix/>
-        <version>1.3.5</version>
+        <version>1.3.51</version>
     </sys_app>
 </record_update>
