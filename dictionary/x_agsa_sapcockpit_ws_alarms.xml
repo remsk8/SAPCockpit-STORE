@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
+<?xml version="1.0" encoding="UTF-8"?><database>
     <element extends="sys_import_set_row" label="WS Alarms" max_length="40" name="x_agsa_sapcockpit_ws_alarms" sizeclass="11392" type="collection">
         <element attributes="import_attribute_name=alarmtime,edge_encryption_enabled=true" label="alarmTime" max_length="40" name="alarmtime" type="string"/>
         <element attributes="import_attribute_name=client,edge_encryption_enabled=true" label="Client" max_length="100" name="client" type="string"/>

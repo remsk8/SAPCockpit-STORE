@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_documentation element="client" label="Client" language="en" table="x_agsa_sapcockpit_metric">
         <sys_documentation action="INSERT_OR_UPDATE">
             <element>client</element>

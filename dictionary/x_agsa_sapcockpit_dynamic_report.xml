@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
-    <element label="Dynamic Report" max_length="40" name="x_agsa_sapcockpit_dynamic_report" type="collection">
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Dynamic Report" max_length="40" name="x_agsa_sapcockpit_dynamic_report" sizeclass="5004" type="collection">
         <element label="Average" max_length="20" name="average" type="decimal"/>
         <element label="Count" max_length="40" name="count" type="integer"/>
         <element label="List Metric" max_length="1024" name="list_metric" type="url"/>

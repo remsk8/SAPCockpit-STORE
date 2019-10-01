@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
+<?xml version="1.0" encoding="UTF-8"?><database>
     <element label="Last metric" max_length="40" name="x_agsa_sapcockpit_last_metric" type="collection">
         <element label="Company" max_length="40" name="company" type="string"/>
         <element label="ConnectorID" max_length="40" name="connectorid" type="string"/>
