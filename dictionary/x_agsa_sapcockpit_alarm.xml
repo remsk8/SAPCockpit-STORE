@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element audit="true" label="Alarm" max_length="40" name="x_agsa_sapcockpit_alarm" sizeclass="5234" type="collection">
+    <element audit="true" label="Alarm" max_length="40" name="x_agsa_sapcockpit_alarm" type="collection">
         <element label="Acknowledge" max_length="40" name="acknowledge" type="boolean"/>
         <element label="Alarm Time" max_length="40" name="alarmtime" type="string"/>
         <element label="Client" max_length="10" name="client" type="string"/>

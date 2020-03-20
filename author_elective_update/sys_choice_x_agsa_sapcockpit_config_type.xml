@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="DELETE" field="type" table="x_agsa_sapcockpit_config" version="3">
+        <sys_choice_set action="DELETE">
+            <element>type</element>
+            <name>x_agsa_sapcockpit_config</name>
+            <sys_class_name/>
+            <sys_created_by/>
+            <sys_created_on/>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id/>
+            <sys_mod_count/>
+            <sys_name/>
+            <sys_package/>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope/>
+            <sys_update_name/>
+            <sys_updated_by/>
+            <sys_updated_on>2020-03-20 14:05:56</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application/>
+        <file_path/>
+        <instance_id>d56b33c5dbff130089535d00cf9619c1</instance_id>
+        <instance_name>ven02626</instance_name>
+        <name>sys_choice_x_agsa_sapcockpit_config_type</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_choice action="DELETE" field="type" table="x_agsa_sapcockpit_config" version="3"><sys_choice_set action="DELETE"><element>type</element><name>x_agsa_sapcockpit_config</name><sys_class_name/><sys_created_by/><sys_created_on/><sys_customer_update>false</sys_customer_update><sys_id/><sys_mod_count/><sys_name/><sys_package/><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope/><sys_update_name/><sys_updated_by/><sys_updated_on>2020-03-20 14:05:56</sys_updated_on></sys_choice_set></sys_choice></record_update>]]></payload>
+        <payload_hash>772250480</payload_hash>
+        <record_name>x_agsa_sapcockpit_config.type</record_name>
+        <reverted_from/>
+        <source>55c6a2e5db735300f1bf001b8a9619ec</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-20 14:05:56</sys_created_on>
+        <sys_id>390999ebdb270410446b105f6896199b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>170f843c6080000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-20 14:05:56</sys_updated_on>
+        <type>Choice list</type>
+        <update_guid>710999eb3f270410ff0104aa5d886d9b</update_guid>
+        <update_guid_history>710999eb3f270410ff0104aa5d886d9b:772250480,710999eb702704105dc5d2216b167098:865657046,750999eb0c270410a1c2b64292c96270:-661821949,42062aa5fe73530071e1dae770b566b6:0,27b56a257f735300492541fff380d989:1348529921,a7b56a259b735300305a5bbe580e4086:865657046,63b56a250e73530027cf54c3e7574184:-661821949,284a6d5d98f7130032c082e8142b643b:0,e04a6d5dd1f71300ada4225b73426f34:-1399854566</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-03-20 14:07:22</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sys_choice_set">sys_choice_set</sys_db_object>
+        <sys_id>c849992fdb270410446b105f689619d7</sys_id>
+        <sys_metadata>c849992fdb270410446b105f689619d7</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>type</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_scope_delete display_value="">48cf623ac95d495ea0ff5511fc72aa24</sys_scope_delete>
+        <sys_update_name>sys_choice_x_agsa_sapcockpit_config_type</sys_update_name>
+        <sys_update_version display_value="sys_choice_x_agsa_sapcockpit_config_type">390999ebdb270410446b105f6896199b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-03-20 14:07:22</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

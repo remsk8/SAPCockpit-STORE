@@ -3,7 +3,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -18,7 +18,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>company</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -33,7 +33,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>connectorid</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
@@ -48,7 +48,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>data</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
@@ -63,7 +63,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>description</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>4</position>
@@ -78,7 +78,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>executiontime</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>5</position>
@@ -93,7 +93,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>measuretime</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>6</position>
@@ -108,7 +108,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>metric</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>7</position>
@@ -123,7 +123,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>module</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>8</position>
@@ -138,7 +138,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>sid</element>
-            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">384ac2c84f9d6f8033e71aabb110c799</list_id>
+            <list_id display_value="x_agsa_sapcockpit_last_metric" element="NULL" name="x_agsa_sapcockpit_last_metric" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">ef75f5b4dbb92b00550b4a92ba96196b</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>9</position>

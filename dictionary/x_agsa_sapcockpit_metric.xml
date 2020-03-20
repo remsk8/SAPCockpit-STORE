@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Metric" max_length="40" name="x_agsa_sapcockpit_metric" sizeclass="53039" type="collection">
+    <element label="Metric" max_length="40" name="x_agsa_sapcockpit_metric" type="collection">
         <element label="Client" max_length="100" name="client" type="string"/>
         <element label="Company" max_length="40" name="company" type="string"/>
         <element label="ConfigID" max_length="100" name="configid" type="string"/>

@@ -7,7 +7,7 @@
         <display_field/>
         <field_list>number,business_service,incident_state,short_description</field_list>
         <filter table="incident">active=true^business_service=dad1ca3bdb799f007bd0f13daf961975^ORDERBYDESCsys_created_on<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
-            <item display_table="cmdb_ci_service" display_value="ProMonitor Alarm" endquery="false" field="business_service" goto="false" newquery="false" operator="=" or="false" value="dad1ca3bdb799f007bd0f13daf961975"/>
+            <item endquery="false" field="business_service" goto="false" newquery="false" operator="=" or="false" value="dad1ca3bdb799f007bd0f13daf961975"/>
             <item endquery="false" field="" goto="false" newquery="false" operator="ORDERBYDESC" or="false" value="sys_created_on"/>
         </filter>
         <glyph/>

@@ -29,8 +29,8 @@
         <chunk_size_bytes/>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
-        <encryption_context/>
         <file_name>image</file_name>
+        <hash/>
         <image_height>293</image_height>
         <image_width>1692</image_width>
         <size_bytes>46881</size_bytes>

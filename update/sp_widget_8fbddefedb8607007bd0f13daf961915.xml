@@ -8,7 +8,10 @@
 	}, c.options.widgetupdate);
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>.alamppmod {
+	padding-bottom:20px;
+}
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -95,7 +98,7 @@
         <sys_created_on>2017-10-30 12:53:29</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>8fbddefedb8607007bd0f13daf961915</sys_id>
-        <sys_mod_count>69</sys_mod_count>
+        <sys_mod_count>70</sys_mod_count>
         <sys_name>AngAlmPerModuleConsole</sys_name>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
         <sys_policy/>
@@ -103,9 +106,10 @@
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sp_widget_8fbddefedb8607007bd0f13daf961915</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-11-02 16:05:14</sys_updated_on>
+        <sys_updated_on>2020-03-20 14:15:12</sys_updated_on>
         <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
-<table class='sstatus' sytle='width:30%;'>
+<div class='alamppmod'>
+  <table class='sstatus' sytle='width:30%;'>
 	<thead>
 		<tr ng-init="sortType='severity';sortReverse = true">
 			<th class="sstatus"><a href="javascript:void(0)" ng-click="sortType = 'name'; sortReverse = !sortReverse">Tenant</a></th>
@@ -120,6 +124,8 @@
 	</tr>
 
 </table>
+
+</div>
 ]]></template>
     </sp_widget>
 </record_update>
