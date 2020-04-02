@@ -8,14 +8,11 @@
 	}, c.options.widgetupdate);
 	c.acknowledge = function(sys_id){
 			$.ajax({
-				type: "GET",
-				url: "x_agsa_sapcockpit_ProMonitorProcessor.do?sys_id="+sys_id,
+				type: "POST",
+				url: "/api/x_agsa_sapcockpit/acknowledge_alarms?sys_id="+sys_id,
 				contentType: "application/json; charset=utf-8",
 				success: function (response) {
 					spUtil.update($scope);
-				},
-				error: function (status) {
-					console.log('fail to acknoledge Alarm' + status.code);
 				}
 			});
 		};
@@ -45,10 +42,10 @@ padding-top:10px;
 	var nbalm=new GlideAggregate('x_agsa_sapcockpit_alarm');
 	nbalm.addQuery('sid',system);
 	nbalm.addQuery('acknowledge','false');
-	nbalm.addAggregate('COUNT')
-	nbalm.query()
+	nbalm.addAggregate('COUNT');
+	nbalm.query();
 	if (nbalm.next()) {
-		data.count=nbalm.getAggregate('COUNT') 
+		data.count=nbalm.getAggregate('COUNT') ;
 	}
 	var getAlm=new GlideRecordSecure('x_agsa_sapcockpit_alarm');
 	getAlm.addQuery('sid',system);
@@ -73,7 +70,7 @@ padding-top:10px;
         <sys_created_on>2017-10-30 12:56:57</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>f19e1e32dbc607007bd0f13daf961943</sys_id>
-        <sys_mod_count>100</sys_mod_count>
+        <sys_mod_count>104</sys_mod_count>
         <sys_name>AngAlarmConsole</sys_name>
         <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
         <sys_policy/>
@@ -81,7 +78,7 @@ padding-top:10px;
         <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
         <sys_update_name>sp_widget_f19e1e32dbc607007bd0f13daf961943</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-12-21 15:59:09</sys_updated_on>
+        <sys_updated_on>2020-04-02 09:53:45</sys_updated_on>
         <template><![CDATA[<link href="f989cff14f4a430033e71aabb110c71b.cssdbx?" rel="stylesheet" type="text/css" />
 <!--<a href="" ng-click="showme=true">Hide Filter</a>
 <span class="wrapper">

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_query_parameter">
+    <sys_ws_query_parameter action="DELETE">
+        <example_value/>
+        <name>sys_id</name>
+        <required>false</required>
+        <short_description>this is the sysId of the alarm to acknowledge</short_description>
+        <sys_class_name>sys_ws_query_parameter</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-02 09:02:22</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ef10dfa7dbf74050446b105f689619ee</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sys_id</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_update_name>sys_ws_query_parameter_ef10dfa7dbf74050446b105f689619ee</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-02 09:02:22</sys_updated_on>
+        <web_service_definition display_value="Acknowledge Alarms">188f87a7dbf74050446b105f68961942</web_service_definition>
+    </sys_ws_query_parameter>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</application>
+        <file_path/>
+        <instance_id>d56b33c5dbff130089535d00cf9619c1</instance_id>
+        <instance_name>ven02626</instance_name>
+        <name>sys_ws_query_parameter_ef10dfa7dbf74050446b105f689619ee</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_query_parameter"><sys_ws_query_parameter action="INSERT_OR_UPDATE"><example_value/><name>sys_id</name><required>false</required><short_description>this is the sysId of the alarm to acknowledge</short_description><sys_class_name>sys_ws_query_parameter</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-04-02 09:02:22</sys_created_on><sys_customer_update>false</sys_customer_update><sys_id>ef10dfa7dbf74050446b105f689619ee</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sys_id</sys_name><sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package><sys_policy/><sys_replace_on_upgrade>false</sys_replace_on_upgrade><sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope><sys_update_name>sys_ws_query_parameter_ef10dfa7dbf74050446b105f689619ee</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-04-02 09:02:22</sys_updated_on><web_service_definition display_value="Acknowledge Alarms">188f87a7dbf74050446b105f68961942</web_service_definition></sys_ws_query_parameter></record_update>]]></payload>
+        <payload_hash>-993160832</payload_hash>
+        <record_name>sys_id</record_name>
+        <reverted_from/>
+        <source>2c4991abdb270410446b105f68961947</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-02 09:02:22</sys_created_on>
+        <sys_id>ce309fa7dbf74050446b105f68961998</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1713a2088f70000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-02 09:02:22</sys_updated_on>
+        <type>Scripted REST Query Parameter</type>
+        <update_guid>0a309fa76df7405083559f52f2168298</update_guid>
+        <update_guid_history>0a309fa76df7405083559f52f2168298:-993160832</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-02 09:27:26</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_db_object display_value="" name="sys_ws_query_parameter">sys_ws_query_parameter</sys_db_object>
+        <sys_id>117e5e30039240a78e10c80b5f598f89</sys_id>
+        <sys_metadata>ef10dfa7dbf74050446b105f689619ee</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sys_id</sys_name>
+        <sys_package display_value="SAPCockpit" source="x_agsa_sapcockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SAPCockpit">e8dd70d1dbcacb407bd0f13daf96199c</sys_scope>
+        <sys_scope_delete display_value="">48cf623ac95d495ea0ff5511fc72aa24</sys_scope_delete>
+        <sys_update_name>sys_ws_query_parameter_ef10dfa7dbf74050446b105f689619ee</sys_update_name>
+        <sys_update_version display_value="sys_ws_query_parameter_ef10dfa7dbf74050446b105f689619ee">ce309fa7dbf74050446b105f68961998</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-02 09:27:26</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
